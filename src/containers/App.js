@@ -10,9 +10,19 @@ import UserRequest from './UserRequest'
 class App extends React.Component {
 	constructor(props) {
 		super(props);
+		this.state = {
+			activePanel: 'mainscreen',
+			fetchedUser: null,
+		}
 	}
 
 	componentDidMount() {
+	}
+
+	show(e) {
+		console.log("show!!!");
+		console.log(e);
+		this.setState({ activePanel: e })
 	}
 
 	render() {
@@ -29,14 +39,10 @@ class App extends React.Component {
 				break;
 			default:
 				break;
-
 		}
 		return (
 			<UI.Root activeView={active}>
 				<MainScreen id="mainscreen"/>
-				<TimeScreen id="timescreen"/>
-				<EpicScreen id="epicscreen"/>
-				<UserRequest id="userrequest"/>
 			</UI.Root>
 		);
 	}
@@ -44,6 +50,7 @@ class App extends React.Component {
 
 function mapStateToProps(state) {
     return {
+
     };
 }
 

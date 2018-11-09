@@ -6,7 +6,7 @@ class EpicScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-        activeStory: 'more'
+        activeStory: 'feed'
       };
     this.onStoryChange = this.onStoryChange.bind(this);
   }

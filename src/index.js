@@ -8,11 +8,14 @@ import {ConnectedRouter, routerMiddleware} from 'react-router-redux';
 import thunk from 'redux-thunk';
 import {rootReducer} from './store/reducers';
 import registerServiceWorker from './sw';
+import { BrowserRouter as Router } from 'react-router-dom'
 import App from './containers/App';
 
 const history = createHashHistory({
     hashType: 'noslash'
 });
+
+var route = '/:pageId(epic|)?'
 
 const store = createStore(
   rootReducer,
@@ -21,15 +24,12 @@ const store = createStore(
 
 ReactDOM.render(
   <Provider store={store}>
-    <ConnectedRouter history={history}>
-        <div>
-          <Route path='/:pageId(epic|)?' component={(props) => <App pageId={props.match.params.pageId}/>}>
-          </Route>
-          <Route path='/:pageId(userrequest|)?' component={(props) => <App pageId={props.match.params.pageId}/>}>
-          </Route>
-        </div>
-    </ConnectedRouter>
-  </Provider>,
+          <ConnectedRouter history={history}>
+              <div>
+                  <Route path={route} component={(props) => <App pageId={props.match.params.pageId}/>}/>
+              </div>
+          </ConnectedRouter>
+    </Provider>,
   document.getElementById('root')
 );
 

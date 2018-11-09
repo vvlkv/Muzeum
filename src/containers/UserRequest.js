@@ -39,10 +39,10 @@ const thematics = [
 class UserRequest extends Component {
 
   constructor(props) {
+    console.log("USER_REQUEST");
     super(props);
     autoBind(this);
   }
-
   componentDidMount() {
   }
 
