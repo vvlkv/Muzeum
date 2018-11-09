@@ -25,6 +25,8 @@ ReactDOM.render(
         <div>
           <Route path='/:pageId(epic|)?' component={(props) => <App pageId={props.match.params.pageId}/>}>
           </Route>
+          <Route path='/:pageId(userrequest|)?' component={(props) => <App pageId={props.match.params.pageId}/>}>
+          </Route>
         </div>
     </ConnectedRouter>
   </Provider>,

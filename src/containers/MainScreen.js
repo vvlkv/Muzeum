@@ -10,8 +10,14 @@ class MainScreen extends Component {
       <View id='mainView' activePanel='mainPanel'>
         <Panel id='mainPanel'>
           <PanelHeader ></PanelHeader>
+          <Button size="xl" level="2" onClick={this.openUserRequest.bind(this)}>
+            Посетитель
+          </Button>
           <Button size="xl" level="2" onClick={this.openEpic.bind(this)}>
-            Show EPIC!
+            Работник
+          </Button>
+          <Button size="xl" level="2" onClick={this.openEpic.bind(this)}>
+            Диспетчер
           </Button>
         </Panel>
       </View>
@@ -21,6 +27,11 @@ class MainScreen extends Component {
   openEpic() {
     console.log("openEpic")
     this.props.dispatch(push('epic'));
+  }
+
+  openUserRequest() {
+    console.log("userrequest")
+    this.props.dispatch(push('userrequest'));
   }
 
   getActualTime() {

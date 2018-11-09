@@ -13,22 +13,24 @@ class App extends React.Component {
 	}
 
 	componentDidMount() {
-		// connect.subscribe((e) => {
-		// 	switch (e.detail.type) {
-		// 		case 'VKWebAppGetUserInfoResult':
-		// 			this.setState({ fetchedUser: e.detail.data });
-		// 			break;
-		// 		default:
-		// 			console.log(e.detail.type);
-		// 	}
-		// });
-		// connect.send('VKWebAppGetUserInfo', {});
 	}
 
 	render() {
 		console.log("render!!")
 
-		let active = this.props.pageId == 'epic' ? 'userrequest' : 'mainscreen';
+		let active = 'mainscreen';
+
+		switch(this.props.pageId) {
+			case 'epic':
+				active = 'epicscreen';
+				break;
+			case 'userrequest' :
+				active = 'userrequest';
+				break;
+			default:
+				break;
+
+		}
 		return (
 			<UI.Root activeView={active}>
 				<MainScreen id="mainscreen"/>
