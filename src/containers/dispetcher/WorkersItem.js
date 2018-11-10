@@ -36,19 +36,6 @@ class WorkersItem extends Component {
 		}
   }
 
-  preRender() {
-    return (
-      <UI.View id="spinner" activePanel="spinner">
-        <UI.Panel id="spinner">
-          <UI.PanelHeader>Spinner</UI.PanelHeader>
-          <div style={{ height: 100 }}>
-            <UI.Spinner />
-          </div>
-        </UI.Panel>
-      </UI.View>
-    );
-  }
-
   changeID(e) {
     this.setState({workerID: e.target.value});
   }

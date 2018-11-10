@@ -8,13 +8,13 @@ class RequestsScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-			activePanel: 'mainscreen',
+			activePanel: 'requests',
 		}
   }
   render() {
     return (
-        <UI.View id="requests" activePanel="mainscreen">
-          <UI.Panel id='mainscreen'>
+        <UI.View id="requests" activePanel="requests">
+          <UI.Panel id='requests'>
             <UI.PanelHeader noShadow>Заявки</UI.PanelHeader>
               <UI.FixedLayout vertical="top">
                 <UI.Tabs theme="header" type="buttons">
