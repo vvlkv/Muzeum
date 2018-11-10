@@ -24,6 +24,12 @@ export default function reduce(state = initialState, action = {}) {
         return state.merge({
           urls: action.urls
         });
+        case types.LOGIN_PHOTO:
+        console.log("LOGIN_PHOTO");
+        console.log(action.resp);
+            return state.merge({
+              urls: action.resp
+            });
     default:
       return state;
   }

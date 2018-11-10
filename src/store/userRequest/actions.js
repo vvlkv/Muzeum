@@ -12,17 +12,35 @@ export function fetchLocations() {
   }
 }
 
+export function imgHackLogin() {
+  console.log("imgHackLogin");
+  var dataR =  {
+    'auth_token': '494d73adf4848e30ab21c71bfd3742f0',
+    'set_cookies': 'TRUE',
+    'remember_me': 'TRUE'
+   };
+  var strData = JSON.stringify(dataR);
+  console.log(strData);
+  return async(dispatch, getState) => {
+    try {
+      const resp = await ibiApiService.loginPhoto(dataR);
+      dispatch({type: types.LOGIN_PHOTO, resp});
+    } catch (e) {
+      console.error(e);
+    }
+  }
+}
+
 export function UploadPhoto(file) {
   console.log("UploadPhoto1");
   if(!file) {
     console.log("Error UploadPhoto");
   }
   else {
-    var dataR =  { 'user': 'AlexeyBoooooB',
-      'password': '4815162342',
+    var dataR =  {
       'auth_token': '39FJKOUW5c7ef0e3b5ce8a530508ff1c3b3f2cef',
-      'set_cookies': 'FALSE',
-      'remember_me': 'FALSE'
+      'set_cookies': 'TRUE',
+      'remember_me': 'TRUE'
      };
     var strData = JSON.stringify(dataR);
     console.log(strData);

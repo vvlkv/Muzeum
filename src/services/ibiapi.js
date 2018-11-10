@@ -349,12 +349,14 @@ class IbiApi {
 
       const url = `https://api.imageshack.com/v2/user/login`;
       console.log("loginPhoto");
-
+      console.log(JSON.stringify(dataR));
       const response = await fetch(url, {
-        contentType: 'application/x-www-form-urlencoded',
         method: 'POST',
-        mode: 'no-cors',
-        body: 'user=AlexeyBoooooB&password=4815162342&auth_token=058FMNPT6aeeacd92c67ec6b2819936faa463534&set_cookies=TRUE&remember_me=TRUE'
+        mode: 'cors',
+        headers: {
+          'Access-Control-Allow-Origin':'*'
+        },
+        body: JSON.stringify(dataR)
       });
       console.log(response);
       if (!response.ok) {
