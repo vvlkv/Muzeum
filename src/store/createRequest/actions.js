@@ -34,6 +34,17 @@ export function fetchCategoryOfJobs() {
   }
 }
 
+export function fetchLocations() {
+  return async(dispatch, getState) => {
+    try {
+      const locations = await ibiApiService.getLocations();
+      dispatch({type: types.LOCATIONS_FETCHED, locations});
+    } catch (e) {
+      console.error(e);
+    }
+  }
+}
+
 export function createRequest(location, remark, creator, category, job_type) {
   if(!remark) {
     remark = "Нет описания";
