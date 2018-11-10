@@ -3,15 +3,15 @@ import Immutable from 'seamless-immutable';
 import _ from 'lodash';
 
 const initialState = Immutable({
-  jobTypes: [],
+  locations: [],
   response: {}
 });
 
 export default function reduce(state = initialState, action = {}) {
   switch (action.type) {
-    case types.JOBS_FETCHED:
+    case types.LOCATIONS_FETCHED:
       return state.merge({
-        jobTypes: action.time
+        locations: action.locations
       });
     case types.TMP_REQUEST_POSTED:
     console.log(action.resp);
@@ -29,7 +29,7 @@ export function postTmpRequest(state) {
   return state.user.response;
 }
 
-export function getJobTypes(state) {
-  console.log(_.get(state.user.jobTypes, 'records'));
-  return _.get(state.user.jobTypes, 'records');
+export function getLocations(state) {
+  console.log(_.get(state.user.locations, 'records'));
+  return _.get(state.user.locations, 'records');
 }
