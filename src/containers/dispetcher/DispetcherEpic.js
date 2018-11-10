@@ -9,7 +9,8 @@ class DispetcherEpic extends Component {
   constructor(props) {
     super(props);
     this.state = {
-        activeStory: 'workers'
+        activeStory: 'workers',
+        activePanel: 'discover'
       };
     this.onStoryChange = this.onStoryChange.bind(this);
   }
@@ -34,9 +35,14 @@ class DispetcherEpic extends Component {
         </UI.Tabbar>
       }>
       <WorkersItem id="workers"/>
-      <UI.View id="discover" activePanel="discover">
+      <UI.View id="discover" activePanel={this.state.activePanel}>
         <UI.Panel id="discover">
           <UI.PanelHeader>Discover</UI.PanelHeader>
+          <UI.Button onClick={() => this.setState({activePanel: 'test'})}>Next</UI.Button>
+        </UI.Panel>
+        <UI.Panel id="test">
+          <UI.PanelHeader>cxvxcv</UI.PanelHeader>
+          <UI.Button>фывфывфыв</UI.Button>
         </UI.Panel>
       </UI.View>
       </UI.Epic>
@@ -46,7 +52,6 @@ class DispetcherEpic extends Component {
 
 function mapStateToProps(state) {
   return {
-
   };
 }
 

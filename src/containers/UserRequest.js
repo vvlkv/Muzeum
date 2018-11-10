@@ -27,7 +27,6 @@ class UserRequest extends Component {
   }
 
   goBack() {
-    console.log("goback");
     this.setState( { activePanel: "requestView"})
   }
 
@@ -36,7 +35,6 @@ class UserRequest extends Component {
     console.log(this.state.remark);
     console.log(this.state.creatorId);
     this.props.dispatch(requestActions.postRequest(this.state.location, this.state.remark, this.state.creatorId));
-    // this.setState( { activePanel: "thanks"})
   }
 
   changeRemark(e) {
@@ -44,8 +42,6 @@ class UserRequest extends Component {
   }
 
   changeLocation(e) {
-    console.log("changeLoc");
-    console.log(e.target.value);
     this.setState({location: e.target.value});
   }
 
