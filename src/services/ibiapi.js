@@ -347,11 +347,7 @@ class IbiApi {
     }
 
     async loginPhoto(dataR) {
-<<<<<<< HEAD
 
-=======
-      
->>>>>>> d5ca7bd5ba7f926ff6264921b15495ea836df625
       const url = `https://api.imageshack.com/v2/user/login`;
       console.log("loginPhoto");
 
@@ -359,11 +355,7 @@ class IbiApi {
         contentType: 'application/x-www-form-urlencoded',
         method: 'POST',
         mode: 'no-cors',
-<<<<<<< HEAD
         body: 'user=AlexeyBoooooB&password=4815162342&auth_token=058FMNPT6aeeacd92c67ec6b2819936faa463534',
-=======
-        body: 'user=AlexeyBoooooB&password=' + urlencode('4815162342') + '&058FMNPT6aeeacd92c67ec6b2819936faa463534',
->>>>>>> d5ca7bd5ba7f926ff6264921b15495ea836df625
       });
       console.log(response);
       if (!response.ok) {
