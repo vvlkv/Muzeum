@@ -45,8 +45,6 @@ export default function reduce(state = initialState, action = {}) {
 }
 
 export function createRequest(state) {
-  console.log("createRequest");
-  console.log(state.request.response);
   return state.request.response;
 }
 
@@ -56,8 +54,8 @@ export function getTmpRequest(state) {
 }
 
 export function getTmpRequests(state) {
-  console.log(state.request.tmpRequests);
-  return state.request.tmpRequests;
+  console.log(_.get(state.request.tmpRequests, 'records'));
+  return _.get(state.request.tmpRequests, 'records');
 }
 
 export function getTypeJobs(state) {

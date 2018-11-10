@@ -3,7 +3,6 @@ import {connect} from 'react-redux'
 import * as UI from '@vkontakte/vkui'
 import '@vkontakte/vkui/dist/vkui.css'
 import MainScreen from './MainScreen'
-import EpicScreen from './EpicScreen'
 import UserRequest from './UserRequest'
 
 class App extends React.Component {
