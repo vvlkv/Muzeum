@@ -14,17 +14,16 @@ export function fetchJobs() {
 
 export function postRequest(location, remark, creatorId) {
   var dataR =  { 'remark': remark,
-    'creator_vk_id': creatorId,
+    'creator_vk_id': 1234,
     'location': location,
     'photo_url': '' };
-  console.log("postRequest");
-  console.log(dataR);
-
+  var strData = JSON.stringify(dataR);
+  console.log(strData);
   //var data = new FormData();
   //data.append( "json", JSON.stringify( location ) );
   return async(dispatch, getState) => {
     try {
-      const resp = await ibiApiService.postTmpRequest(dataR);
+      const resp = await ibiApiService.postTmpRequest(strData);
       dispatch({type: types.TMP_REQUEST_POSTED, resp});
     } catch (e) {
       console.error(e);

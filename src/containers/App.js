@@ -2,7 +2,6 @@ import React from 'react'
 import {connect} from 'react-redux'
 import * as UI from '@vkontakte/vkui'
 import '@vkontakte/vkui/dist/vkui.css'
-import TimeScreen from './TimeScreen'
 import MainScreen from './MainScreen'
 import EpicScreen from './EpicScreen'
 import UserRequest from './UserRequest'
@@ -17,13 +16,10 @@ class App extends React.Component {
 	}
 
 	show(e) {
-		console.log("show!!!");
-		console.log(e);
 		this.setState({ activePanel: e })
 	}
 
 	render() {
-		console.log("render!!")
 
 		let active = 'mainscreen';
 
