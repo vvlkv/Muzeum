@@ -49,7 +49,6 @@ class UserRequest extends Component {
     this.setState({location: e.target.value});
   }
 
-
   render() {
     //if (!this.props.typeJobs) return this.renderLoading();
     return (

@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import {push} from 'react-router-redux';
 import UserRequest from './UserRequest'
 import WorkerEpic from './WorkerEpic'
-import DispetcherEpic from './DispetcherEpic'
+import DispetcherEpic from './dispetcher/DispetcherEpic'
 
 import * as requestActions from '../store/userRequest/actions'
 import * as requestSelectors from '../store/userRequest/reducer'
