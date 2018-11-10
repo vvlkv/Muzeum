@@ -353,10 +353,11 @@ class IbiApi {
         method: 'POST',
         mode: 'cors',
         headers:{
-          'Access-Control-Allow-Origin':'*'
+          'Access-Control-Allow-Origin': '*'
         },
         body: JSON.stringify(dataR)
       });
+      console.log(response);
       if (!response.ok) {
         console.log("loginPhoto not ok");
         throw new Error(`imageshack failed, HTTP status ${response.status}`)
@@ -371,6 +372,10 @@ class IbiApi {
       console.log("updatePhoto");
       const response = await fetch(url, {
         method: 'POST',
+        mode: 'cors',
+        headers:{
+          'Access-Control-Allow-Origin':'*'
+        },
         body: JSON.stringify(dataR)
       });
       if (!response.ok) {
