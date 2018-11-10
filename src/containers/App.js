@@ -1,6 +1,5 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import { Panel, Button, Group, Div, PanelHeader, Epic, Tabbar, TabbarItem, View, Input } from '@vkontakte/vkui';
 import * as UI from '@vkontakte/vkui'
 import '@vkontakte/vkui/dist/vkui.css'
 import MainScreen from './MainScreen'

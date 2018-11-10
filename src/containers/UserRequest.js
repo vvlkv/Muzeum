@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Panel, ScreenSpinner, PanelHeader, InfoRow, Progress, Alert, View, FormLayout, Select, File, platform, Button, IOS, Textarea, Div, HeaderButton, Input } from '@vkontakte/vkui';
+import { Panel, PanelHeader, InfoRow, Progress, Alert, View, FormLayout, Select, File, platform, Button, IOS, Textarea, Div, HeaderButton, Input } from '@vkontakte/vkui';
 import {connect} from 'react-redux';
 import autoBind from 'react-autobind';
 

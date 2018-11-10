@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Panel, Button, Group, Div, PanelHeader, Epic, Tabbar, IOS, platform, TabbarItem, View, Input } from '@vkontakte/vkui';
+import { Epic, Tabbar, IOS, platform, TabbarItem, View, Input } from '@vkontakte/vkui';
 import {connect} from 'react-redux';
 import RequestsScreen from './RequestsScreen';
 import MapScreen from './MapScreen';

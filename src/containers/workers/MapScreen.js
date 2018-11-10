@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import * as UI from '@vkontakte/vkui';
-import {push} from 'react-router-redux';
 import {MapSwg} from '../../icons/Map';
 
 class MapScreen extends Component {
