@@ -16,12 +16,16 @@ class RequestsItem extends Component {
     autoBind(this);
     this.state = {
 			activePanel: "requests",
-      activeTempRequest: null
+      activeTempRequest: null,
+      categoryJob: null,
+      jobTypes: null
 		}
   }
 
   componentWillMount() {
-    this.props.dispatch(requestActions.fetchTmpRequests())
+    this.props.dispatch(requestActions.fetchTmpRequests());
+    this.props.dispatch(requestActions.fetchCategoryOfJobs());
+    this.props.dispatch(requestActions.fetchTypeJobs());
   }
 
   changeID(e) {
@@ -32,8 +36,15 @@ class RequestsItem extends Component {
     this.setState({post: e.target.value});
   }
 
-  showTempRequest(request) {
+  changeCategory(e) {
+    this.setState({categoryJob: e.target.value});
+  }
+
+  showTempRequest(request, categoryJobss) {
+    console.log("request");
+    //this.props.dispatch(requestActions.fetchCategoryOfJobs());
     console.log(request);
+    console.log(this.state.jobTypes);
     this.setState({
       activePanel: "showtemprequest",
       activeTempRequest: request
@@ -42,6 +53,7 @@ class RequestsItem extends Component {
   }
 
   preRender() {
+    console.log(this.props.categoryJobs);
     return (
       <UI.View id="spinner" activePanel="spinner">
         <UI.Panel id="spinner">
@@ -55,7 +67,9 @@ class RequestsItem extends Component {
   }
 
   render() {
-    if (!this.props.tempRequests) return this.preRender();
+  console.log("categoryJobs"); console.log(this.props.categoryJobs);
+    if (!this.props.tempRequests || !this.props.categoryJobs || !this.props.jobTypes) return this.preRender();
+    console.log("categoryJobs"); console.log(this.props.categoryJobs);
     return (
       <UI.Root activeView="requests">
         <UI.View id="requests" activePanel={this.state.activePanel}>
@@ -85,7 +99,7 @@ class RequestsItem extends Component {
                 </UI.Tabs>
               </UI.FixedLayout>
               <UI.List style={{ marginTop: 60 }}>
-                {this.props.tempRequests.map(request => <UI.Cell expandable description={request.remark} onClick={this.showTempRequest.bind(this, request)}>{request.remark}</UI.Cell>)}
+                {this.props.tempRequests.map(request => <UI.Cell expandable description={request.remark} onClick={this.showTempRequest.bind(this, request, this.props.categoryJobs)}>{request.remark}</UI.Cell>)}
               </UI.List>
           </UI.Panel>
           <UI.Panel id="showtemprequest">
@@ -95,7 +109,8 @@ class RequestsItem extends Component {
               <UI.Input top="Описание заявки" value={this.state.activeTempRequest == null ? "" : this.state.activeTempRequest.remark}/>
               <UI.Input top="Дата создания" value={this.state.activeTempRequest == null ? "" : this.state.activeTempRequest.create_date}/>
               <UI.Input top="Помещение" value={this.state.activeTempRequest == null ? "" : this.state.activeTempRequest.location}/>
-              <UI.Select>
+              <UI.Select top="Категория работ" placeholder="Выберите категорию работ" onChange={this.changeCategory}>
+                {this.props.categoryJobs.map(category => <option value={category.id}> {category.name} </option>)}
               </UI.Select>
             </UI.FormLayout>
           </UI.Panel>
@@ -108,6 +123,7 @@ class RequestsItem extends Component {
 function mapStateToProps(state) {
   return {
     tempRequests: requestSelectors.getTmpRequests(state),
+    categoryJobs: requestSelectors.getCategoryOfJobs(state),
     jobTypes: requestSelectors.getTypeJobs(state)
   };
 }
