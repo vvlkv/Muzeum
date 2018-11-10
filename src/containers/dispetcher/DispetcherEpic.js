@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import Icon24Back from '@vkontakte/icons/dist/24/back';
 import Icon24Search from '@vkontakte/icons/dist/24/search';
 import WorkersItem from './WorkersItem'
+import RequestsItem from './RequestsItem'
 
 class DispetcherEpic extends Component {
   constructor(props) {
@@ -29,12 +30,18 @@ class DispetcherEpic extends Component {
           ></UI.TabbarItem>
           <UI.TabbarItem
             onClick={this.onStoryChange}
+            selected={this.state.activeStory === 'requests'}
+            data-story="requests"
+          ></UI.TabbarItem>
+          <UI.TabbarItem
+            onClick={this.onStoryChange}
             selected={this.state.activeStory === 'discover'}
             data-story="discover"
           ></UI.TabbarItem>
         </UI.Tabbar>
       }>
       <WorkersItem id="workers"/>
+      <RequestsItem id="requests"/>
       <UI.View id="discover" activePanel={this.state.activePanel}>
         <UI.Panel id="discover">
           <UI.PanelHeader>Discover</UI.PanelHeader>
