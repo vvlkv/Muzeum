@@ -263,8 +263,89 @@ class IbiApi {
 
 
     /************************************NOT USED********************************************************/
-    /***********************************GET METHOD*******************************************************/
-    
+    /***********************************POST METHOD*******************************************************/
+
+    async postModerateTmpRequest() {
+      const url = `${IBISOLUTIONS_ENDPOINT}/restapi/api_moderate_tmp_request.php`;
+      console.log("postModerateTmpRequest");
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json'
+        }
+      });
+      if (!response.ok) {
+        console.log("postModerateTmpRequest not ok");
+        throw new Error(`Worldclock getTime failed, HTTP status ${response.status}`)
+      }
+      const data = await response.json();
+      return data;
+    }
+
+    async deleteTmpRequest(id) {
+      const url = `${IBISOLUTIONS_ENDPOINT}/restapi/api_delete_tmp_request.php`;
+      console.log("deleteTmpRequest");
+      const response = await fetch(url, {
+        method: 'POST',
+        body: JSON.stringify(id)
+      });
+      if (!response.ok) {
+        console.log("deleteTmpRequest not ok");
+        throw new Error(`Worldclock getTime failed, HTTP status ${response.status}`)
+      }
+      const data = await response.json();
+      return data;
+    }
+
+    async postAssignRequest() {
+      const url = `${IBISOLUTIONS_ENDPOINT}/restapi/api_assign_request.php`;
+      console.log("postAssignRequest");
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json'
+        }
+      });
+      if (!response.ok) {
+        console.log("postAssignRequest not ok");
+        throw new Error(`Worldclock getTime failed, HTTP status ${response.status}`)
+      }
+      const data = await response.json();
+      return data;
+    }
+
+    async postChangeStateRequest() {
+      const url = `${IBISOLUTIONS_ENDPOINT}/restapi/api_change_state_request.php`;
+      console.log("postChangeStateRequest");
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json'
+        }
+      });
+      if (!response.ok) {
+        console.log("postChangeStateRequest not ok");
+        throw new Error(`Worldclock getTime failed, HTTP status ${response.status}`)
+      }
+      const data = await response.json();
+      return data;
+    }
+
+    async addComment(dataR) {
+      const url = `${IBISOLUTIONS_ENDPOINT}/restapi/api_add_comment.php`;
+      console.log("addComment");
+      const response = await fetch(url, {
+        method: 'POST',
+        body: JSON.stringify(dataR)
+      });
+      if (!response.ok) {
+        console.log("addComment not ok");
+        throw new Error(`Worldclock getTime failed, HTTP status ${response.status}`)
+      }
+      const data = await response.json();
+      return data;
+    }
+
 }
 
 export default new IbiApi();
