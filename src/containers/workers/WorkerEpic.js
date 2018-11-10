@@ -6,8 +6,8 @@ import MapScreen from './MapScreen';
 
 import Icon28ChevronNote from '@vkontakte/icons/dist/24/note';
 import Icon24Note from '@vkontakte/icons/dist/24/note';
-import Icon28ChevronUser from '@vkontakte/icons/dist/24/user';
-import Icon24User from '@vkontakte/icons/dist/24/user';
+import Icon28ChevronPlace from '@vkontakte/icons/dist/24/place';
+import Icon24Place from '@vkontakte/icons/dist/24/place';
 
 const osname = platform();
 
