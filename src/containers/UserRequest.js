@@ -34,7 +34,8 @@ class UserRequest extends Component {
   showCongrats() {
     console.log(this.state.location);
     console.log(this.state.remark);
-
+    console.log(this.state.creatorId);
+    this.props.dispatch(requestActions.postRequest(this.state.location, this.state.remark, this.state.creatorId));
     // this.setState( { activePanel: "thanks"})
   }
 
@@ -48,16 +49,6 @@ class UserRequest extends Component {
     this.setState({location: e.target.value});
   }
 
-<<<<<<< HEAD
-  /*renderLoading() {
-    return (
-      <View id="spinnerView" popout={<ScreenSpinner />} header={false} activePanel="spinner">
-        <Panel id="spinner" />
-      </View>
-    );
-  }*/
-=======
->>>>>>> 59da65e2dbf0adeae7c4133a3f0f7970afaae678
 
   render() {
     //if (!this.props.typeJobs) return this.renderLoading();

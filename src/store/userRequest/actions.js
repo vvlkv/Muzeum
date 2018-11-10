@@ -12,10 +12,19 @@ export function fetchJobs() {
   }
 }
 
-export function postRequest() {
+export function postRequest(location, remark, creatorId) {
+  var dataR =  { 'remark': remark,
+    'creator_vk_id': creatorId,
+    'location': location,
+    'photo_url': '' };
+  console.log("postRequest");
+  console.log(dataR);
+
+  //var data = new FormData();
+  //data.append( "json", JSON.stringify( location ) );
   return async(dispatch, getState) => {
     try {
-      const resp = await ibiApiService.getJobTypes();
+      const resp = await ibiApiService.postTmpRequest(dataR);
       dispatch({type: types.TMP_REQUEST_POSTED, resp});
     } catch (e) {
       console.error(e);
