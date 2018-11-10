@@ -15,7 +15,7 @@ export function fetchJobs() {
 export function postRequest() {
   return async(dispatch, getState) => {
     try {
-      const time = await ibiApiService.getJobTypes();
+      const resp = await ibiApiService.getJobTypes();
       dispatch({type: types.TMP_REQUEST_POSTED, resp});
     } catch (e) {
       console.error(e);

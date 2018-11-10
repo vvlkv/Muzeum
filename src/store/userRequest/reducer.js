@@ -29,6 +29,7 @@ export function postTmpRequest(state) {
 }
 
 export function getJobTypes(state) {
+  console.log(state);
   console.log("getJobTypes");
   console.log(_.get(state.user.jobTypes, 'records'));
   return _.get(state.user.jobTypes, 'records');
