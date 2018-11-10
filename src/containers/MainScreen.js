@@ -56,7 +56,13 @@ class MainScreen extends Component {
     )
   }
 
+  componentDidMount() {
+    console.log("componentDidMount");
+  }
+
   openUserRequest() {
+    console.log("userrequest")
+    this.props.dispatch(push('userrequest'));
   }
 
   getActualTime() {
@@ -65,6 +71,7 @@ class MainScreen extends Component {
 }
 
 function mapStateToProps(state) {
+  console.log("mapStateToProps");
   return {
   };
 }

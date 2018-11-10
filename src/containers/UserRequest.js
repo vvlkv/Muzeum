@@ -8,6 +8,9 @@ import Icon28ChevronBack from '@vkontakte/icons/dist/28/chevron_back';
 import Icon24Back from '@vkontakte/icons/dist/24/back';
 import Icon24Camera from '@vkontakte/icons/dist/24/camera';
 
+import * as requestActions from '../store/userRequest/actions'
+import * as requestSelectors from '../store/userRequest/reducer'
+
 const osname = platform();
 
 const thematics = [
@@ -56,6 +59,10 @@ class UserRequest extends Component {
     this.setState( { activePanel: "thanks"})
   }
 
+  componentWillMount() {
+    this.props.dispatch(requestActions.fetchJobs())
+  }
+
   render() {
     return (
       <View id="requestView" activePanel={this.state.activePanel}>
@@ -64,10 +71,7 @@ class UserRequest extends Component {
           <FormLayout>
             <Textarea top="Описание" placeholder="Оставтье описание заявки" />
             <Select top="Номер зала" placeholder="Выберите номер зала">
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">2</option>
-              <option value="4">2</option>
+              {this.props.typeJobs.map(job => <option value={job.id}>{job.name}</option>)}
             </Select>
             <File top="Загрузите фото" before={<Icon24Camera />} size="l">
               Открыть галерею
@@ -94,7 +98,9 @@ class UserRequest extends Component {
 
 function mapStateToProps(state) {
   console.log(state);
-  return {};
+  return {
+    typeJobs: requestSelectors.getJobTypes(state)
+  };
 }
 
 export default connect(mapStateToProps)(UserRequest);

@@ -5,7 +5,6 @@ import user from './userRequest/reducer';
 
 export const rootReducer = combineReducers({
     time,
-    user,
-    router: routerReducer
+    user
   }
 );
