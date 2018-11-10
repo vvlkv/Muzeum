@@ -14,17 +14,11 @@ export function fetchJobs() {
 
 export function postRequest(location, remark, creatorId) {
   var dataR =  { 'remark': remark,
-<<<<<<< HEAD
     'creator_vk_id': "1234",
     'location': location,
     'photo_url': '' };
   var strData = JSON.stringify(dataR);
   console.log(strData);
-=======
-    'creator_vk_id': 1234,
-    'location': location,
-    'photo_url': '' };
->>>>>>> ab6504ebb86f8f2833d740e736c16e47e99e6c80
   //var data = new FormData();
   //data.append( "json", JSON.stringify( location ) );
   return async(dispatch, getState) => {
