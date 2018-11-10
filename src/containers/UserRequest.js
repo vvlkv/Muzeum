@@ -48,17 +48,6 @@ class UserRequest extends Component {
     this.setState({location: e.target.value});
   }
 
-<<<<<<< HEAD
-  /*renderLoading() {
-    return (
-      <View id="spinnerView" popout={<ScreenSpinner />} header={false} activePanel="spinner">
-        <Panel id="spinner" />
-      </View>
-    );
-  }*/
-=======
->>>>>>> 59da65e2dbf0adeae7c4133a3f0f7970afaae678
-
   render() {
     //if (!this.props.typeJobs) return this.renderLoading();
     return (
