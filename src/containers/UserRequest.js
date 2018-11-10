@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Panel, Spinner, PanelHeader, View, FormLayout, Select, File, platform, Button, IOS, Textarea, Div, HeaderButton, Input } from '@vkontakte/vkui';
+import { Panel, ScreenSpinner, PanelHeader, View, FormLayout, Select, File, platform, Button, IOS, Textarea, Div, HeaderButton, Input } from '@vkontakte/vkui';
 import {connect} from 'react-redux';
 import autoBind from 'react-autobind';
 
@@ -55,6 +55,14 @@ class UserRequest extends Component {
     console.log(e.target.value);
     this.setState({location: e.target.value});
   }
+
+  /*renderLoading() {
+    return (
+      <View id="spinnerView" popout={<ScreenSpinner />} header={false} activePanel="spinner">
+        <Panel id="spinner" />
+      </View>
+    );
+  }*/
 
   render() {
     //if (!this.props.typeJobs) return this.renderLoading();

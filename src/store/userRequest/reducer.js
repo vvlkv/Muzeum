@@ -30,11 +30,7 @@ export function postTmpRequest(state) {
 
 export function getJobTypes(state) {
   console.log(state);
-<<<<<<< HEAD
   console.log("getJobTypes!");
-=======
-  console.log("getJobTypes");
->>>>>>> 46e094a2c540cba7017f7b5ba218c322ff0535a2
   console.log(_.get(state.user.jobTypes, 'records'));
   return _.get(state.user.jobTypes, 'records');
 }
