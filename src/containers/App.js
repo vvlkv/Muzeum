@@ -6,6 +6,8 @@ import TimeScreen from './TimeScreen'
 import MainScreen from './MainScreen'
 import EpicScreen from './EpicScreen'
 import UserRequest from './UserRequest'
+import * as requestActions from '../store/userRequest/actions'
+import * as requestSelectors from '../store/userRequest/reducer'
 
 class App extends React.Component {
 	constructor(props) {
@@ -17,6 +19,7 @@ class App extends React.Component {
 	}
 
 	componentDidMount() {
+		this.props.dispatch(requestActions.fetchJobs())
 	}
 
 	show(e) {
