@@ -1,26 +1,43 @@
-import React from 'react'
-import {connect} from 'react-redux'
-import * as UI from '@vkontakte/vkui'
-import '@vkontakte/vkui/dist/vkui.css'
-import MainScreen from './MainScreen'
-import UserRequest from './UserRequest'
+import React from 'react';
+import connect from '@vkontakte/vkui-connect';
+import { View } from '@vkontakte/vkui';
+import '@vkontakte/vkui/dist/vkui.css';
+import MainScreen from './MainScreen';
 
 class App extends React.Component {
 	constructor(props) {
 		super(props);
+
 		this.state = {
 			activePanel: 'mainscreen',
 			fetchedUser: null,
-		}
+		};
 	}
 
-	show(e) {
-		this.setState({ activePanel: e })
+		componentDidMount() {
+		connect.subscribe((e) => {
+			switch (e.detail.type) {
+				case 'VKWebAppGetUserInfoResult':
+					this.setState({ fetchedUser: e.detail.data });
+					break;
+				default:
+					console.log(e.detail.type);
+			}
+		});
+		connect.send('VKWebAppGetUserInfo', {});
 	}
+
+	/*show(e) {
+		this.setState({ activePanel: e })
+	}*/
+
+	go = (e) => {
+		this.setState({ activePanel: e.currentTarget.dataset.to })
+	};
 
 	render() {
 
-		let active = 'mainscreen';
+		/*let active = 'mainscreen';
 
 		switch(this.props.pageId) {
 			case 'epic':
@@ -31,17 +48,18 @@ class App extends React.Component {
 				break;
 			default:
 				break;
-		}
+		}*/
 		return (
-			<UI.Root activeView={active}>
-				<MainScreen id="mainscreen"/>
-			</UI.Root>
+			<View activePanel={this.state.activePanel}>
+				<MainScreen id="mainscreen" fetchedUser={this.state.fetchedUser} go={this.go} />
+			</View>
 		);
+		/*return (
+			<UI.Root activeView={this.state.activePanel}>
+				<MainScreen id="mainscreen" fetchedUser={this.state.fetchedUser}/>
+			</UI.Root>
+		);*/
 	}
 }
 
-function mapStateToProps(state) {
-    return {};
-}
-
-export default connect(mapStateToProps)(App);
+export default App;
