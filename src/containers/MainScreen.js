@@ -32,7 +32,7 @@ class MainScreen extends Component {
             </Button>
           </Panel>
         </View>
-        <UserRequest id='request'/>
+        <UserRequest id='request' state={this.state.activePanel}/>
         <EpicScreen id='epic'/>
       </Root>
     );
@@ -58,13 +58,6 @@ class MainScreen extends Component {
 
   componentDidMount() {
     console.log("componentDidMount");
-  }
-
-  openEpic() {
-    console.log(this.props.route);
-    // console.log("openEpic")
-    // this.props.show("epicscreen");
-    this.props.dispatch(push());
   }
 
   openUserRequest() {

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Panel, PanelHeader, View, FormLayout, Select, File, platform, Button, IOS, Textarea, Div, HeaderButton } from '@vkontakte/vkui';
+import { Panel, PanelHeader, View, FormLayout, Select, File, platform, Button, IOS, Textarea, Div, HeaderButton, Input } from '@vkontakte/vkui';
 import {connect} from 'react-redux';
 import autoBind from 'react-autobind';
 
@@ -42,13 +42,23 @@ class UserRequest extends Component {
     console.log("USER_REQUEST");
     super(props);
     autoBind(this);
+    this.state = {
+      activePanel: "requestView",
+    }
   }
-  componentDidMount() {
+
+  goBack() {
+    console.log("goback");
+    this.setState( { activePanel: "requestView"})
+  }
+
+  showCongrats() {
+    this.setState( { activePanel: "thanks"})
   }
 
   render() {
     return (
-      <View id="requestView" activePanel="requestView">
+      <View id="requestView" activePanel={this.state.activePanel}>
         <Panel id="requestView">
           <PanelHeader>Заявка</PanelHeader>
           <FormLayout>
@@ -63,9 +73,19 @@ class UserRequest extends Component {
               Открыть галерею
             </File>
              <Div>
-               <Button size="xl" level="secondary">Оставить заявку</Button>
+               <Button size="xl" level="secondary" onClick={this.showCongrats.bind(this)}>Оставить заявку</Button>
              </Div>
           </FormLayout>
+        </Panel>
+        <Panel id="thanks">
+          <PanelHeader
+            left={<HeaderButton onClick={this.goBack.bind(this)}>
+      				{osname === IOS ? <Icon28ChevronBack/> : <Icon24Back/>}
+      			</HeaderButton>}
+      		>
+          Persik
+        </PanelHeader>
+          <Input type="text" defaultValue="Спасибл"></Input>
         </Panel>
       </View>
     );
@@ -73,7 +93,7 @@ class UserRequest extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log("mapStateToProps");
+  console.log(state);
   return {};
 }
 
