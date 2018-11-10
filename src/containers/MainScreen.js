@@ -57,7 +57,7 @@ class MainScreen extends Component {
           <Panel id='mainscreen'>
             <PanelHeader ></PanelHeader>
             <Button size="xl" level="2" onClick={this.showRequest.bind(this)}>
-              Посетитель5
+              Посетитель6
             </Button>
             <Button size="xl" level="2" onClick={this.showWorkerEpic.bind(this)}>
               Работник
