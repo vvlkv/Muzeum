@@ -32,6 +32,11 @@ class UserRequest extends Component {
     this.setState( { activePanel: "requestView"})
   }
 
+  postRequest() {
+
+    this.props.dispatch(requestActions.postRequest())
+  }
+
   showCongrats() {
     console.log(this.state.location);
     console.log(this.state.remark);
@@ -66,7 +71,7 @@ class UserRequest extends Component {
               Открыть галерею
             </File>
              <Div>
-               <Button size="xl" level="secondary" onClick={this.showCongrats.bind(this)}>Оставить заявку</Button>
+               <Button size="xl" level="secondary" onClick={this.postRequest.bind(this)}>Оставить заявку</Button>
              </Div>
           </FormLayout>
         </Panel>
