@@ -46,22 +46,8 @@ class MainScreen extends Component {
     this.setState({activePanel:'workerepic'})
   }
 
-<<<<<<< HEAD
   showDispetcherEpic() {
     this.setState({activePanel:'dispetcherepic'})
-=======
-  componentDidMount() {
-    console.log("componentDidMount");
-  }
-
-  openUserRequest() {
-    console.log("userrequest")
-    this.props.dispatch(push('userrequest'));
-  }
-
-  getActualTime() {
-    console.log("getActualTime");
->>>>>>> fbb601aa897490d0bc595573fc119f35576535e6
   }
 }
 
