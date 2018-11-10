@@ -10,6 +10,7 @@ import Icon24Note from '@vkontakte/icons/dist/24/note';
 import Icon24Users from '@vkontakte/icons/dist/24/users';
 import Icon24Place from '@vkontakte/icons/dist/24/place';
 
+
 class DispetcherEpic extends Component {
   constructor(props) {
     super(props);

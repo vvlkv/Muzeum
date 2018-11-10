@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import { Panel, Button, Group, Div, PanelHeader, Epic, Tabbar, IOS, platform, TabbarItem, View, Input } from '@vkontakte/vkui';
 import {connect} from 'react-redux';
-import RequestsScreen from './RequestsScreen'
+import RequestsScreen from './RequestsScreen';
+import MapScreen from './MapScreen';
 
 import Icon28ChevronNote from '@vkontakte/icons/dist/24/note';
 import Icon24Note from '@vkontakte/icons/dist/24/note';
@@ -33,17 +34,13 @@ class WorkerEpic extends Component {
           >{osname === IOS ? <Icon28ChevronNote/> : <Icon24Note/>}</TabbarItem>
           <TabbarItem
             onClick={this.onStoryChange}
-            selected={this.state.activeStory === 'discover'}
-            data-story="discover"
+            selected={this.state.activeStory === 'map'}
+            data-story="map"
           >{osname === IOS ? <Icon28ChevronPlace/> : <Icon24Place/>}</TabbarItem>
         </Tabbar>
       }>
       <RequestsScreen id="requests" activePanel="requests"/>
-        <View id="discover" activePanel="discover">
-          <Panel id="discover">
-            <PanelHeader>Discover</PanelHeader>
-          </Panel>
-        </View>
+      <MapScreen id="map"/>
       </Epic>
     )
   }

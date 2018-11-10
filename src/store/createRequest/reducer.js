@@ -59,6 +59,7 @@ export function getTmpRequests(state) {
 }
 
 export function getTypeJobs(state) {
+  console.log("GET_TYPE_JOBS");
   console.log(state.request.jobTypes);
   return state.request.jobTypes;
 }

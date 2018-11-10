@@ -32,14 +32,6 @@ class RequestsItem extends Component {
     this.setState({post: e.target.value});
   }
 
-  changePassword(e) {
-    this.setState({password: e.target.value});
-  }
-
-  showEmployee(e) {
-    console.log(e);
-  }
-
   showTempRequest(request) {
     console.log(request);
     this.setState({
@@ -103,6 +95,8 @@ class RequestsItem extends Component {
               <UI.Input top="Описание заявки" value={this.state.activeTempRequest == null ? "" : this.state.activeTempRequest.remark}/>
               <UI.Input top="Дата создания" value={this.state.activeTempRequest == null ? "" : this.state.activeTempRequest.create_date}/>
               <UI.Input top="Помещение" value={this.state.activeTempRequest == null ? "" : this.state.activeTempRequest.location}/>
+              <UI.Select>
+              </UI.Select>
             </UI.FormLayout>
           </UI.Panel>
         </UI.View>
@@ -113,7 +107,8 @@ class RequestsItem extends Component {
 
 function mapStateToProps(state) {
   return {
-    tempRequests: requestSelectors.getTmpRequests(state)
+    tempRequests: requestSelectors.getTmpRequests(state),
+    jobTypes: requestSelectors.getTypeJobs(state)
   };
 }
 
