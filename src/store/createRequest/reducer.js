@@ -65,8 +65,7 @@ export function getTypeJobs(state) {
 }
 
 export function getCategoryOfJobs(state) {
-  console.log(state.request.jobCategories);
-  return state.request.jobCategories;
+  return _.get(state.request.jobCategories, 'records');
 }
 
 export function getLocations(state) {

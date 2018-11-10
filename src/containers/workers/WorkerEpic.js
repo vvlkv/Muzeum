@@ -3,6 +3,7 @@ import { Panel, Button, Group, Div, PanelHeader, Epic, Tabbar, IOS, platform, Ta
 import {connect} from 'react-redux';
 import RequestsScreen from './RequestsScreen';
 import MapScreen from './MapScreen';
+import SvgScreen from './SvgScreen';
 
 import Icon28ChevronNote from '@vkontakte/icons/dist/24/note';
 import Icon24Note from '@vkontakte/icons/dist/24/note';
@@ -40,7 +41,7 @@ class WorkerEpic extends Component {
         </Tabbar>
       }>
       <RequestsScreen id="requests" activePanel="requests"/>
-      <MapScreen id="map"/>
+      <SvgScreen id="map" activePanel="map"/>
       </Epic>
     )
   }
@@ -48,7 +49,6 @@ class WorkerEpic extends Component {
 
 function mapStateToProps(state) {
   return {
-
   };
 }
 

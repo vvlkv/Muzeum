@@ -16,6 +16,7 @@ class RequestsItem extends Component {
     autoBind(this);
     this.state = {
 			activePanel: "requests",
+      post: "",
       activeTempRequest: null,
       categoryJob: null,
       jobTypes: null
@@ -67,9 +68,8 @@ class RequestsItem extends Component {
   }
 
   render() {
-  console.log("categoryJobs"); console.log(this.props.categoryJobs);
-    if (!this.props.tempRequests || !this.props.categoryJobs || !this.props.jobTypes) return this.preRender();
-    console.log("categoryJobs"); console.log(this.props.categoryJobs);
+    console.log("categoryJobs"); console.log(this.props.jobPriority);
+    if (!this.props.tempRequests || !this.props.jobTypes || !this.props.jobPriority) return this.preRender();
     return (
       <UI.Root activeView="requests">
         <UI.View id="requests" activePanel={this.state.activePanel}>
@@ -110,7 +110,10 @@ class RequestsItem extends Component {
               <UI.Input top="Дата создания" value={this.state.activeTempRequest == null ? "" : this.state.activeTempRequest.create_date}/>
               <UI.Input top="Помещение" value={this.state.activeTempRequest == null ? "" : this.state.activeTempRequest.location}/>
               <UI.Select top="Категория работ" placeholder="Выберите категорию работ" onChange={this.changeCategory}>
-                {this.props.categoryJobs.map(category => <option value={category.id}> {category.name} </option>)}
+                {this.props.jobTypes.map(category => <option value={category.id}> {category.name} </option>)}
+              </UI.Select>
+              <UI.Select top="Срочность исполнения" placeholder="Установите приоритет" onChange={this.changeCategory}>
+                {this.props.jobPriority.map(category => <option value={category.id}> {category.name} </option>)}
               </UI.Select>
             </UI.FormLayout>
           </UI.Panel>
@@ -123,8 +126,8 @@ class RequestsItem extends Component {
 function mapStateToProps(state) {
   return {
     tempRequests: requestSelectors.getTmpRequests(state),
-    categoryJobs: requestSelectors.getCategoryOfJobs(state),
-    jobTypes: requestSelectors.getTypeJobs(state)
+    jobTypes: requestSelectors.getTypeJobs(state),
+    jobPriority: requestSelectors.getCategoryOfJobs(state)
   };
 }
 
