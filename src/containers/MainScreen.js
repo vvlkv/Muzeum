@@ -5,7 +5,6 @@ import {push} from 'react-router-redux';
 import UserRequest from './UserRequest'
 import WorkerEpic from './workers/WorkerEpic'
 import DispetcherEpic from './dispetcher/DispetcherEpic'
-import * as VKUI from '@vkontakte/vkui-connect';
 
 import * as requestActions from '../store/userRequest/actions'
 import * as requestSelectors from '../store/userRequest/reducer'
@@ -23,19 +22,6 @@ class MainScreen extends Component {
   componentWillMount() {
     this.props.dispatch(requestActions.fetchLocations())
   }
-
-  componentDidMount() {
-		/*VKUI.connect.subscribe((e) => {
-			switch (e.detail.type) {
-				case 'VKWebAppGetUserInfoResult':
-					this.setState({ fetchedUser: e.detail.data });
-					break;
-				default:
-					console.log(e.detail.type);
-			}
-		});
-		VKUI.connect.send('VKWebAppGetUserInfo', {});*/
-	}
 
   preRender() {
     return (
