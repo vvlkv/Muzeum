@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import RequestsScreen from './RequestsScreen';
 import MapScreen from './MapScreen';
 import SvgScreen from './SvgScreen';
+import AdvsScreen from './AdvsScreen';
 
 import Icon28ChevronNote from '@vkontakte/icons/dist/24/note';
 import Icon24Note from '@vkontakte/icons/dist/24/note';
@@ -36,13 +37,19 @@ class WorkerEpic extends Component {
           >{osname === IOS ? <Icon28ChevronNote/> : <Icon24Note/>}</TabbarItem>
           <TabbarItem
             onClick={this.onStoryChange}
+            selected={this.state.activeStory === 'map'}
+            data-story="map"
+          >{osname === IOS ? <Icon28ChevronPlace/> : <Icon24Place/>}</TabbarItem>
+          <TabbarItem
+            onClick={this.onStoryChange}
             selected={this.state.activeStory === 'advs'}
             data-story="advs"
           >{osname === IOS ? <Icon24Notification/> : <Icon24Notification/>}</TabbarItem>
-        </Tabbar>
+      </Tabbar>
       }>
       <RequestsScreen id="requests" activePanel="requests"/>
       <SvgScreen id="map" activePanel="map"/>
+      <AdvsScreen id="advs" activePanel="advs"/>
       </Epic>
     )
   }

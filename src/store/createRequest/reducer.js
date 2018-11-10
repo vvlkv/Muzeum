@@ -8,6 +8,7 @@ const initialState = Immutable({
   jobTypes: [],
   jobCategories: [],
   locations: [],
+  avds: [],
   response: {}
 });
 
@@ -41,6 +42,11 @@ export default function reduce(state = initialState, action = {}) {
         console.log(action.resp);
           return state.merge({
             locations: action.resp
+          });
+    case types.AVDS_FETCHED:
+        console.log(action.resp);
+          return state.merge({
+            avds: action.resp
           });
     case types.REQUEST_MODERATED:
     console.log(action.resp);
@@ -77,4 +83,9 @@ export function getCategoryOfJobs(state) {
 export function getLocations(state) {
   console.log(_.get(state.request.locations, 'records'));
   return _.get(state.request.locations, 'records');
+}
+
+export function getAvds(state) {
+  console.log(_.get(state.request.locations, 'records'));
+  return _.get(state.request.avds, 'records');
 }

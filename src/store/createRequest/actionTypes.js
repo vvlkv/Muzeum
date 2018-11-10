@@ -6,3 +6,4 @@ export const CREATE_REQUEST = 'createRequest.CREATE_REQUEST';
 export const LOCATIONS_FETCHED = 'userRequest.LOCATIONS_FETCHED';
 export const REQUEST_MODERATED = 'userRequest.LOCATIONS_FETCHED';
 export const REQUEST_DELETED = 'userRequest.REQUEST_DELETED';
+export const AVDS_FETCHED = 'userRequest.AVDS_FETCHED';
