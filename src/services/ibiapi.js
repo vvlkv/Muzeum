@@ -1,6 +1,6 @@
 import _ from 'lodash';
 
-const IBISOLUTIONS_ENDPOINT = 'http://vkapi.ibisolutions.ru/';
+const IBISOLUTIONS_ENDPOINT = 'https://vkapi.ibisolutions.ru/';
 
 class IbiApi {
 
