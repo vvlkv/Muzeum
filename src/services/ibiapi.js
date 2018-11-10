@@ -1,11 +1,11 @@
 import _ from 'lodash';
 
-const WORLDCLOCK_ENDPOINT = 'http://vkapi.ibisolutions.ru/';
+const IBISOLUTIONS_ENDPOINT = 'http://vkapi.ibisolutions.ru/';
 
 class IbiApi {
 
   async getLocations() {
-    const url = `${WORLDCLOCK_ENDPOINT}/restapi/api_get_all_areas_for_guests.php`;
+    const url = `${IBISOLUTIONS_ENDPOINT}/restapi/api_get_all_areas_for_guests.php`;
     const response = await fetch(url, {
       method: 'GET',
       headers: {
@@ -20,7 +20,7 @@ class IbiApi {
   }
 
   async postTmpRequest(dataR) {
-    const url = `${WORLDCLOCK_ENDPOINT}/restapi/api_create_tmp_request.php`;
+    const url = `${IBISOLUTIONS_ENDPOINT}/restapi/api_create_tmp_request.php`;
     console.log("postTmpRequest");
     const response = await fetch(url, {
       method: 'POST',
@@ -35,7 +35,7 @@ class IbiApi {
   }
 
   async getTmpRequest() {
-    const url = `${WORLDCLOCK_ENDPOINT}/restapi/***`;
+    const url = `${IBISOLUTIONS_ENDPOINT}/restapi/***`;
     const response = await fetch(url, {
       method: 'GET',
       headers: {
@@ -50,7 +50,7 @@ class IbiApi {
   }
 
   async createRequest(dataR) {
-    const url = `${WORLDCLOCK_ENDPOINT}/restapi/***`;
+    const url = `${IBISOLUTIONS_ENDPOINT}/restapi/***`;
     console.log("postTmpRequest");
     const response = await fetch(url, {
       method: 'POST',
@@ -64,6 +64,35 @@ class IbiApi {
     return data;
   }
 
+  async getTypeJobs() {
+    const url = `${IBISOLUTIONS_ENDPOINT}/restapi/***`;
+    const response = await fetch(url, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json'
+      }
+    });
+    if (!response.ok) {
+      throw new Error(`Worldclock getTime failed, HTTP status ${response.status}`)
+    }
+    const data = await response.json();
+    return data;
+  }
+
+  async getCategoryOfJobs() {
+    const url = `${IBISOLUTIONS_ENDPOINT}/restapi/***`;
+    const response = await fetch(url, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json'
+      }
+    });
+    if (!response.ok) {
+      throw new Error(`Worldclock getTime failed, HTTP status ${response.status}`)
+    }
+    const data = await response.json();
+    return data;
+  }
 }
 
 export default new IbiApi();

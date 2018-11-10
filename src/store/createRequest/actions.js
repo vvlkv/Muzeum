@@ -12,6 +12,28 @@ export function fetchTmpRequest() {
   }
 }
 
+export function fetchTypeJobs() {
+  return async(dispatch, getState) => {
+    try {
+      const typeJobs = await ibiApiService.getTypeJobs();
+      dispatch({type: types.TYPE_JOBS_FETCHED, typeJobs});
+    } catch (e) {
+      console.error(e);
+    }
+  }
+}
+
+export function fetchCategoryOfJobs() {
+  return async(dispatch, getState) => {
+    try {
+      const categoryJobs = await ibiApiService.getCategoryOfJobs();
+      dispatch({type: types.CATEGORY_OF_JOBS_FETCHED, categoryJobs});
+    } catch (e) {
+      console.error(e);
+    }
+  }
+}
+
 export function createRequest(location, remark, creator, category, job_type) {
   if(!remark) {
     remark = "Нет описания";
