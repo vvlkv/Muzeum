@@ -44,9 +44,9 @@ export default function reduce(state = initialState, action = {}) {
             locations: action.resp
           });
     case types.AVDS_FETCHED:
-        console.log(action.resp);
+        console.log(action.avds);
           return state.merge({
-            avds: action.resp
+            avds: action.avds
           });
     case types.REQUEST_MODERATED:
     console.log(action.resp);

@@ -5,6 +5,7 @@ import Icon24Back from '@vkontakte/icons/dist/24/back';
 import Icon24Search from '@vkontakte/icons/dist/24/search';
 import WorkersItem from './WorkersItem'
 import RequestsItem from './RequestsItem'
+import AdvsScreen from '../workers/AdvsScreen'
 
 import Icon24Note from '@vkontakte/icons/dist/24/note';
 import Icon24Users from '@vkontakte/icons/dist/24/users';
@@ -52,6 +53,7 @@ class DispetcherEpic extends Component {
         </UI.Tabbar>
       }>
       <WorkersItem id="workers"/>
+      <AdvsScreen id= "advs"/>
       <RequestsItem id="requests"/>
       <UI.View id="discover" activePanel={this.state.activePanel}>
         <UI.Panel id="discover">
