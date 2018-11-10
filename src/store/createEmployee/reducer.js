@@ -46,8 +46,8 @@ export function createEmployee(state) {
 }
 
 export function getPosts(state) {
-  console.log(state.employee.posts);
-  return state.employee.posts;
+  console.log(_.get(state.employee.posts, 'records'));
+  return _.get(state.employee.posts, 'records');
 }
 
 export function getTimeTables(state) {
