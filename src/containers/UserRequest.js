@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Panel, ScreenSpinner, PanelHeader, View, FormLayout, Select, File, platform, Button, IOS, Textarea, Div, HeaderButton, Input } from '@vkontakte/vkui';
+import { Panel, ScreenSpinner, PanelHeader, Alert, View, FormLayout, Select, File, platform, Button, IOS, Textarea, Div, HeaderButton, Input } from '@vkontakte/vkui';
 import {connect} from 'react-redux';
 import autoBind from 'react-autobind';
 
@@ -22,7 +22,8 @@ class UserRequest extends Component {
       activePanel: "requestView",
       remark: "",
       creatorId: "",
-      location: -1
+      location: -1,
+      popout: null
     }
   }
 
@@ -51,22 +52,52 @@ class UserRequest extends Component {
     console.log(e.target.value);
   }
 
+  openSheet () {
+    console.log(this.state.location);
+    console.log(this.state.remark);
+    console.log(this.state.creatorId);
+    this.props.dispatch(requestActions.postRequest(this.state.location, this.state.remark, this.state.creatorId));
+
+    this.setState({ popout:
+      <Alert
+        actions={[{
+          title: 'Закрыть',
+          autoclose: true,
+          style: 'destructive'
+        }, {
+          title: 'Ок',
+          autoclose: true,
+          style: 'cancel'
+        }]}
+        onClose={ () => {
+          console.log("Exit alert!");
+          this.changeRemark({target: {value: ""}});
+          this.setState({remark: ""});
+          console.log(this.state.remark);
+          this.setState({ popout: null }) }}
+      >
+        <h2>Заявка отправлена</h2>
+        <p>Спасибо за участие!</p>
+      </Alert>
+    });
+  }
+
   render() {
-    //if (!this.props.typeJobs) return this.renderLoading();
+    //if (!this.props.typeJobs) return this.renderLoading();  //onClick={this.showCongrats.bind(this)}
     return (
-      <View id="requestView" activePanel={this.state.activePanel}>
+      <View popout={this.state.popout} id="requestView" activePanel={this.state.activePanel}>
         <Panel id="requestView">
           <PanelHeader>Заявка</PanelHeader>
           <FormLayout>
-            <Textarea top="Описание" placeholder="Оставтье описание заявки" onChange={this.changeRemark}/>
+            <Textarea top="Описание" placeholder="Оставтье описание заявки" onChange={this.changeRemark.bind(this)}/>
             <Select top="Номер зала" placeholder="Выберите номер зала" onChange={this.changeLocation}>
-              {this.props.locations.map(location => <option value={location.id}>{location.name}</option>)}
+              {this.props.locations.map(location => <option value={location.id}>{location.id} - {location.name}</option>)}
             </Select>
             <File top="Загрузите фото" before={<Icon24Camera />} size="l" onChange={this.testFile}>
               Открыть галерею
             </File>
              <Div>
-               <Button size="xl" level="secondary" onClick={this.showCongrats.bind(this)}>Оставить заявку</Button>
+               <Button size="xl" level="secondary" onClick={this.openSheet.bind(this)}>Оставить заявку</Button>
              </Div>
           </FormLayout>
         </Panel>
