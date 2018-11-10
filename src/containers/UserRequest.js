@@ -21,6 +21,9 @@ class UserRequest extends Component {
     autoBind(this);
     this.state = {
       activePanel: "requestView",
+      remark: "",
+      creatorId: "",
+      location: -1
     }
   }
 
@@ -34,24 +37,23 @@ class UserRequest extends Component {
   }
 
   showCongrats() {
-    this.setState( { activePanel: "thanks"})
+    console.log(this.state.location);
+    console.log(this.state.remark);
+    // this.setState( { activePanel: "thanks"})
   }
 
   componentWillMount() {
     this.props.dispatch(requestActions.fetchJobs())
   }
 
-  renderLoading() {
-    return (
-      <View activePanel="spinner">
-        <Panel id="spinner">
-          <PanelHeader>Spinner</PanelHeader>
-          <div style={{ height: 100 }}>
-            <Spinner />
-          </div>
-        </Panel>
-      </View>
-    );
+  changeRemark(e) {
+    this.setState({remark: e.target.value});
+  }
+
+  changeLocation(e) {
+    console.log("changeLoc");
+    console.log(e.target.value);
+    this.setState({location: e.target.value});
   }
 
   render() {
@@ -61,15 +63,15 @@ class UserRequest extends Component {
         <Panel id="requestView">
           <PanelHeader>Заявка</PanelHeader>
           <FormLayout>
-            <Textarea top="Описание" placeholder="Оставтье описание заявки" />
-            <Select top="Номер зала" placeholder="Выберите номер зала">
+            <Textarea top="Описание" placeholder="Оставтье описание заявки" onChange={this.changeRemark}/>
+            <Select top="Номер зала" placeholder="Выберите номер зала" onChange={this.changeLocation}>
               {this.props.typeJobs.map(job => <option value={job.id}>{job.name}</option>)}
             </Select>
             <File top="Загрузите фото" before={<Icon24Camera />} size="l">
               Открыть галерею
             </File>
              <Div>
-               <Button size="xl" level="secondary" onClick={this.showCongrats.bind(this)}>Оставить заявку</Button>
+               <Button size="xl" level="secondary" onClick={this.postRequest.bind(this)}>Оставить заявку</Button>
              </Div>
           </FormLayout>
         </Panel>
