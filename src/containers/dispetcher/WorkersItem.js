@@ -81,15 +81,14 @@ class WorkersItem extends Component {
   }
 
   getPostName(idPost) {
-    console.log("ID" + idPost);
+    console.log("ID");
+    console.log(idPost);
     var ind = _.findIndex(this.props.posts, { 'id': idPost });
+      console.log("ind");
       console.log(ind);
-    if(ind>0) {
-      return this.props.posts[ind];
-    }
-    else {
-      return 'Скрыто';
-    }
+        console.log("ret");
+      console.log(this.props.posts[ind].post);
+      return this.props.posts[ind].post;
   }
 
   render() {
@@ -104,7 +103,7 @@ class WorkersItem extends Component {
             </UI.PanelHeader>
             <UI.Group>
               <UI.List>
-                {this.props.workers.map(employee => <UI.Cell expandable description={this.getPostName.bind(this, employee.post)} onClick={this.showEmployee.bind(this, employee.name)}>{employee.name} {employee.lastname}</UI.Cell>)}
+                {this.props.workers.map(employee => <div> <UI.Cell expandable multiline description={this.getPostName.bind(this, employee.post)} onClick={this.showEmployee.bind(this, employee.name)}> {employee.name} {employee.lastname} </UI.Cell> </div>)}
               </UI.List>
             </UI.Group>
           </UI.Panel>
