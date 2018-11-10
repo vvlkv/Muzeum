@@ -35,7 +35,6 @@ class UserRequest extends Component {
     console.log(this.state.location);
     console.log(this.state.remark);
 
-    // this.setState( { activePanel: "thanks"})
   }
 
   changeRemark(e) {

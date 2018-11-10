@@ -18,28 +18,6 @@ class IbiApi {
     const data = await response.json();
     return data;
   }
-
-  /*async getJobTypes() {
-  const location = window.location.hostname;
-    const settings = {
-        method: 'POST',
-        headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-        }
-    };
-
-    const data = await fetch(`http://${location}:9000/api/sensors/`, settings)
-        .then(response => response.json())
-        .then(json => {
-            return json;
-        })
-        .catch(e => {
-            return e
-        });
-
-    return data;
-  }*/
 }
 
 export default new IbiApi();
