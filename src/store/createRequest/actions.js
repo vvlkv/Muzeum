@@ -2,7 +2,6 @@ import * as types from './actionTypes';
 import ibiApiService from '../../services/ibiapi';
 
 export function fetchTmpRequests() {
-  console.log("FETCH_TMP");
   return async(dispatch, getState) => {
     try {
       const tmpRequests = await ibiApiService.getTmpRequests();
@@ -93,6 +92,41 @@ export function createRequest(location, remark, creator, category, job_type) {
     try {
       const resp = await ibiApiService.createRequest(dataR);
       dispatch({type: types.CREATE_REQUEST, resp});
+    } catch (e) {
+      console.error(e);
+    }
+  }
+}
+
+export function moderateRequest(tmpId, remark, creator, location, category, jobType, photoUrl) {
+  var json = {
+    "tmp_id" : tmpId,
+    "remark" : remark,
+    "creator" : creator,
+    "location" : location,
+    "category" : category,
+    "job_type" : jobType,
+    "photo_url" : ""
+  };
+  console.log(json);
+  return async(dispatch, getState) => {
+    try {
+      const resp = await ibiApiService.postModerateTmpRequest(json);
+      dispatch({type: types.REQUEST_MODERATED, resp});
+    } catch (e) {
+      console.error(e);
+    }
+  }
+}
+
+export function deleteRequest(id) {
+  var json = {
+    "id": id
+  };
+  return async(dispatch, getState) => {
+    try {
+      const resp = await ibiApiService.deleteTmpRequest(json);
+      dispatch({type: types.REQUEST_DELETED, resp});
     } catch (e) {
       console.error(e);
     }

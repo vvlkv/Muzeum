@@ -30,15 +30,23 @@ export default function reduce(state = initialState, action = {}) {
         jobCategories: action.categoryJobs
       });
     case types.CREATE_REQUEST:
-    console.log(action.resp);
-        return state.merge({
-          response: action.resp
-        });
+      return state.merge({
+        response: action.resp
+    });
     case types.LOCATIONS_FETCHED:
-    console.log(action.resp);
         return state.merge({
-          locations: action.locations
+          locations: action.resp
         });
+    case types.REQUEST_DELETED:
+        console.log(action.resp);
+          return state.merge({
+            locations: action.resp
+          });
+    case types.REQUEST_MODERATED:
+    console.log(action.resp);
+      return state.merge({
+        locations: action.resp
+      });
     default:
       return state;
   }
@@ -59,9 +67,7 @@ export function getTmpRequests(state) {
 }
 
 export function getTypeJobs(state) {
-  console.log("GET_TYPE_JOBS");
-  console.log(state.request.jobTypes);
-  return state.request.jobTypes;
+  return _.get(state.request.jobTypes, 'records');
 }
 
 export function getCategoryOfJobs(state) {

@@ -8,6 +8,8 @@ import Icon24Search from '@vkontakte/icons/dist/24/search';
 
 import * as requestActions from '../../store/createRequest/actions'
 import * as requestSelectors from '../../store/createRequest/reducer'
+import * as userActions from '../../store/userRequest/actions'
+import * as userSelectors from '../../store/userRequest/reducer'
 
 class RequestsItem extends Component {
 
@@ -19,7 +21,7 @@ class RequestsItem extends Component {
       post: "",
       activeTempRequest: null,
       categoryJob: null,
-      jobTypes: null
+      jobType: null
 		}
   }
 
@@ -27,6 +29,7 @@ class RequestsItem extends Component {
     this.props.dispatch(requestActions.fetchTmpRequests());
     this.props.dispatch(requestActions.fetchCategoryOfJobs());
     this.props.dispatch(requestActions.fetchTypeJobs());
+    this.props.dispatch(userActions.fetchLocations());
   }
 
   changeID(e) {
@@ -41,20 +44,35 @@ class RequestsItem extends Component {
     this.setState({categoryJob: e.target.value});
   }
 
+  changeJobType(e) {
+    this.setState({jobType: e.target.value});
+  }
+
   showTempRequest(request, categoryJobss) {
     console.log("request");
     //this.props.dispatch(requestActions.fetchCategoryOfJobs());
     console.log(request);
-    console.log(this.state.jobTypes);
+    console.log(this.state.jobType);
     this.setState({
+      categoryJob:"",
       activePanel: "showtemprequest",
       activeTempRequest: request
     });
     this.forceUpdate();
   }
 
+  acceptRequest() {
+    this.props.dispatch(requestActions.moderateRequest(this.state.activeTempRequest.id, this.state.activeTempRequest.remark, this.state.activeTempRequest.creator_vk_id, "305", this.state.jobType, this.state.categoryJob, ""))
+  }
+
+  declineRequest() {
+    console.log("declineRequest");
+    console.log(this.state.activeTempRequest.id);
+    this.props.dispatch(requestActions.deleteRequest(this.state.activeTempRequest.id))
+  }
+
   preRender() {
-    console.log(this.props.categoryJobs);
+    console.log(this.props.locations);
     return (
       <UI.View id="spinner" activePanel="spinner">
         <UI.Panel id="spinner">
@@ -68,8 +86,8 @@ class RequestsItem extends Component {
   }
 
   render() {
-    console.log("categoryJobs"); console.log(this.props.jobPriority);
-    if (!this.props.tempRequests || !this.props.jobTypes || !this.props.jobPriority) return this.preRender();
+    console.log(this.state.activeTempRequest);
+    if (!this.props.tempRequests || !this.props.jobType || !this.props.locations || !this.props.jobPriority) return this.preRender();
     return (
       <UI.Root activeView="requests">
         <UI.View id="requests" activePanel={this.state.activePanel}>
@@ -105,16 +123,21 @@ class RequestsItem extends Component {
           <UI.Panel id="showtemprequest">
             <UI.PanelHeader>Заявка</UI.PanelHeader>
             <UI.FormLayout>
-              <UI.Input top="ID гостя" value={this.state.activeTempRequest == null ? "" : this.state.activeTempRequest.id}/>
+              <UI.Input top="ID гостя" value={this.state.activeTempRequest == null ? "" : this.state.activeTempRequest.creator_vk_id}/>
               <UI.Input top="Описание заявки" value={this.state.activeTempRequest == null ? "" : this.state.activeTempRequest.remark}/>
-              <UI.Input top="Дата создания" value={this.state.activeTempRequest == null ? "" : this.state.activeTempRequest.create_date}/>
-              <UI.Input top="Помещение" value={this.state.activeTempRequest == null ? "" : this.state.activeTempRequest.location}/>
-              <UI.Select top="Категория работ" placeholder="Выберите категорию работ" onChange={this.changeCategory}>
-                {this.props.jobTypes.map(category => <option value={category.id}> {category.name} </option>)}
+              <UI.Select top="Номер зала" value={this.state.activeTempRequest == null ? "" : this.state.activeTempRequest.location}>
+                {this.props.locations.map(location => <option value={location.id}> {location.id} - {location.name} </option>)}
               </UI.Select>
-              <UI.Select top="Срочность исполнения" placeholder="Установите приоритет" onChange={this.changeCategory}>
+              <UI.Select top="Категория работ" placeholder="Выберите категорию работ" onChange={this.changeCategory}>
+                {this.props.jobType.map(category => <option value={category.id}> {category.name} </option>)}
+              </UI.Select>
+              <UI.Select top="Срочность исполнения" placeholder="Установите приоритет" onChange={this.changeJobType}>
                 {this.props.jobPriority.map(category => <option value={category.id}> {category.name} </option>)}
               </UI.Select>
+              <UI.Div style={{display: 'flex'}}>
+                <UI.Button size="l" stretched style={{ marginRight: 8 }} onClick={this.acceptRequest}>Подтвердить</UI.Button>
+                <UI.Button size="l" stretched onClick={this.declineRequest}>Отклонить</UI.Button>
+              </UI.Div>
             </UI.FormLayout>
           </UI.Panel>
         </UI.View>
@@ -126,8 +149,9 @@ class RequestsItem extends Component {
 function mapStateToProps(state) {
   return {
     tempRequests: requestSelectors.getTmpRequests(state),
-    jobTypes: requestSelectors.getTypeJobs(state),
-    jobPriority: requestSelectors.getCategoryOfJobs(state)
+    jobType: requestSelectors.getTypeJobs(state),
+    jobPriority: requestSelectors.getCategoryOfJobs(state),
+    locations: userSelectors.getLocations(state)
   };
 }
 
