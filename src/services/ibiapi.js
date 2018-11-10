@@ -34,7 +34,22 @@ class IbiApi {
     return data;
   }
 
-  async getTmpRequest() {
+  async getTmpRequests() {
+    const url = `${IBISOLUTIONS_ENDPOINT}/restapi/api_get_all_tmp_requests.php`;
+    const response = await fetch(url, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json'
+      }
+    });
+    if (!response.ok) {
+      throw new Error(`Worldclock getTime failed, HTTP status ${response.tmpRequest}`)
+    }
+    const data = await response.json();
+    return data;
+  }
+
+  async getTmpRequest(id) {
     const url = `${IBISOLUTIONS_ENDPOINT}/restapi/***`;
     const response = await fetch(url, {
       method: 'GET',

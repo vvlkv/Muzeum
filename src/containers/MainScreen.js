@@ -18,7 +18,7 @@ class MainScreen extends Component {
 		}
   }
 
-  componentDidMount() {
+  componentWillMount() {
     this.props.dispatch(requestActions.fetchLocations())
   }
 

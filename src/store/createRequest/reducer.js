@@ -12,9 +12,9 @@ const initialState = Immutable({
 
 export default function reduce(state = initialState, action = {}) {
   switch (action.type) {
-    case types.TMP_REQUEST_FETCHED:
+    case types.TMP_REQUESTS_FETCHED:
       return state.merge({
-        tmpRequest: action.tmpRequest
+        tmpRequests: action.tmpRequests
       });
     case types.TYPE_JOBS_FETCHED:
       return state.merge({

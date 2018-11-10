@@ -1,10 +1,21 @@
 import * as types from './actionTypes';
 import ibiApiService from '../../services/ibiapi';
 
-export function fetchTmpRequest() {
+xport function fetchTmpRequests() {
   return async(dispatch, getState) => {
     try {
       const tmpRequest = await ibiApiService.getTmpRequest();
+      dispatch({type: types.TMP_REQUESTS_FETCHED, tmpRequests});
+    } catch (e) {
+      console.error(e);
+    }
+  }
+}
+
+export function fetchTmpRequest(id) {
+  return async(dispatch, getState) => {
+    try {
+      const tmpRequest = await ibiApiService.getTmpRequests();
       dispatch({type: types.TMP_REQUEST_FETCHED, tmpRequest});
     } catch (e) {
       console.error(e);

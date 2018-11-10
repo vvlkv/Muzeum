@@ -94,6 +94,7 @@ export function createEmployee(name, lastname, area, birth, vk_id, timetable, ca
   return async(dispatch, getState) => {
     try {
       const resp = await ibiApiService.createEmployee(dataR);
+      console.log(resp);
       dispatch({type: types.CREATE_EMPLOYEE, resp});
     } catch (e) {
       console.error(e);

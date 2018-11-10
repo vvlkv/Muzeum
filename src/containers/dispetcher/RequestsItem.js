@@ -61,13 +61,13 @@ class RequestsItem extends Component {
                     onClick={() => this.setState({ activeTab6: 'all' })}
                     selected={this.state.activeTab6 === 'all'}
                   >
-                    Активные
+                    На рассмотрении
                   </UI.TabsItem>
                   <UI.TabsItem
                     onClick={() => this.setState({ activeTab6: 'users' })}
                     selected={this.state.activeTab6 === 'users'}
                   >
-                    Доступные
+                    Активные
                   </UI.TabsItem>
                   <UI.TabsItem
                     onClick={() => this.setState({ activeTab6: 'groups' })}
@@ -78,6 +78,9 @@ class RequestsItem extends Component {
                 </UI.HorizontalScroll>
               </UI.Tabs>
             </UI.FixedLayout>
+            <UI.Group>
+              <UI.Button>ХУЙ</UI.Button>
+            </UI.Group>
         </UI.Panel>
       </UI.View>
     );
@@ -86,6 +89,7 @@ class RequestsItem extends Component {
 
 function mapStateToProps(state) {
   return {
+
   };
 }
 
