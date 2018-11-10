@@ -353,9 +353,11 @@ class IbiApi {
         method: 'POST',
         mode: 'cors',
         headers:{
-          'Access-Control-Allow-Origin': '*'
+          Accept: 'application/json',
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Methods': '*'
         },
-        body: JSON.stringify(dataR)
+        body: dataR
       });
       console.log(response);
       if (!response.ok) {

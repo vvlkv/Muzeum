@@ -21,8 +21,8 @@ export function UploadPhoto(file) {
     var dataR =  { 'user': "AlexeyBoooooB",
       'password': "4815162342",
       'auth_token': "39FJKOUW5c7ef0e3b5ce8a530508ff1c3b3f2cef",
-      'set_cookies': "TRUE ",
-      'remember_me': "TRUE "
+      'set_cookies': TRUE,
+      'remember_me': TRUE
      };
     var strData = JSON.stringify(dataR);
     console.log(strData);
