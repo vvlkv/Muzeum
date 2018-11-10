@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Panel, PanelHeader, View, FormLayout, Select, File, platform, Button, IOS, Textarea, Div, HeaderButton, Input } from '@vkontakte/vkui';
+import { Panel, Spinner, PanelHeader, View, FormLayout, Select, File, platform, Button, IOS, Textarea, Div, HeaderButton, Input } from '@vkontakte/vkui';
 import {connect} from 'react-redux';
 import autoBind from 'react-autobind';
 
@@ -38,14 +38,6 @@ class UserRequest extends Component {
     // this.setState( { activePanel: "thanks"})
   }
 
-  componentWillMount() {
-    // this.props.dispatch(requestActions.fetchJobs())
-  }
-
-  componentDidMount() {
-    if (!this.props.typeJobs) return this.preRender();
-  }
-
   changeRemark(e) {
     this.setState({remark: e.target.value});
   }
@@ -56,16 +48,9 @@ class UserRequest extends Component {
     this.setState({location: e.target.value});
   }
 
-  preRender() {
-    return (
-      <View id="aa" activePanel="wait">
-        <Panel id="wait">
-        </Panel>
-      </View>
-    )
-  }
 
   render() {
+    //if (!this.props.typeJobs) return this.renderLoading();
     return (
       <View id="requestView" activePanel={this.state.activePanel}>
         <Panel id="requestView">
