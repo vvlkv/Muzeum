@@ -7,6 +7,7 @@ const initialState = Immutable({
   usersCategories: [],
   locations: [],
   timeTables: [],
+  workers: [],
   response: {}
 });
 
@@ -34,6 +35,11 @@ export default function reduce(state = initialState, action = {}) {
       return state.merge({
         locations: action.locations
       });
+    case types.WORKERS_FETCHED:
+    console.log(action.resp);
+      return state.merge({
+        workers: action.worker
+      });
     default:
       return state;
   }
@@ -48,6 +54,11 @@ export function createEmployee(state) {
 export function getPosts(state) {
   console.log(_.get(state.employee.posts, 'records'));
   return _.get(state.employee.posts, 'records');
+}
+
+export function getWorkers(state) {
+  console.log(_.get(state.employee.workers, 'records'));
+  return _.get(state.employee.workers, 'records');
 }
 
 export function getTimeTables(state) {

@@ -50,6 +50,17 @@ export function fetchCategoryOfJobs() {
   }
 }
 
+export function fetchAvds() {
+  return async(dispatch, getState) => {
+    try {
+      const avds = await ibiApiService.getAvds();
+      dispatch({type: types.AVDS_FETCHED, avds});
+    } catch (e) {
+      console.error(e);
+    }
+  }
+}
+
 export function fetchLocations() {
   return async(dispatch, getState) => {
     try {

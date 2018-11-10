@@ -12,6 +12,17 @@ export function fetchPosts() {
   }
 }
 
+export function fetchWorkers() {
+  return async(dispatch, getState) => {
+    try {
+      const worker = await ibiApiService.getWorkers();
+      dispatch({type: types.WORKERS_FETCHED, worker});
+    } catch (e) {
+      console.error(e);
+    }
+  }
+}
+
 export function fetchTimeTables() {
   return async(dispatch, getState) => {
     try {
