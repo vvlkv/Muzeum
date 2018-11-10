@@ -350,14 +350,21 @@ class IbiApi {
       const url = `https://api.imageshack.com/v2/user/login`;
       console.log("loginPhoto");
 
+      var bodyD = {
+        'user': 'AlexeyBoooooB',
+        'password': '4815162342',
+        'auth_token': '494d73adf4848e30ab21c71bfd3742f0',
+        'set_cookies': false,
+        'remember_me': false
+      }
+
       const response = await fetch(url, {
         headers: {
-          Accept: 'application/json'
-        },
-        'Content-Type': 'application/json',
+          "content-type": "application/json",
+          Accept: 'application/json'},
         method: 'POST',
         mode: 'no-cors',
-        body: 'user=AlexeyBoooooB&password=4815162342&auth_token=494d73adf4848e30ab21c71bfd3742f0&set_cookies=TRUE&remember_me=TRUE'
+        body: JSON.stringify(bodyD)
       });
       console.log(response);
       if (!response.ok) {
