@@ -74,19 +74,6 @@ export function createRequest(name, lastname, area, birth, vk_id, timetable, cat
     timetable = "1";
   }
 
-  "name" : "Тест",
-  "lastname" : "Тестовый",
-  "vk_id" : "2398098",
-  "birth" : "1993-11-11",
-  "post" : "1",
-  "category" : "WRK",
-  "self_phone" : "79111112233",
-  "work_phone" : "2233",
-  "email" : "test@test.test",
-  "password" : "123456",
-  "area" : "300",
-  "timetable" : "1"
-
   var dataR =  {
     "name" : name,
     "lastname" : lastname,
