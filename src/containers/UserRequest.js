@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Panel, ScreenSpinner, PanelHeader, Alert, View, FormLayout, Select, File, platform, Button, IOS, Textarea, Div, HeaderButton, Input } from '@vkontakte/vkui';
+import { Panel, ScreenSpinner, PanelHeader, InfoRow, Progress, Alert, View, FormLayout, Select, File, platform, Button, IOS, Textarea, Div, HeaderButton, Input } from '@vkontakte/vkui';
 import {connect} from 'react-redux';
 import autoBind from 'react-autobind';
 
@@ -23,7 +23,10 @@ class UserRequest extends Component {
       remark: "",
       creatorId: "",
       location: -1,
-      popout: null
+      popout: null,
+      selectedFile: null,
+      loaded: 0,
+      urls: null
     }
   }
 
@@ -35,6 +38,7 @@ class UserRequest extends Component {
     console.log(this.state.location);
     console.log(this.state.remark);
     console.log(this.state.creatorId);
+    console.log(this.state.urls);
     this.props.dispatch(requestActions.postRequest(this.state.location, this.state.remark, this.state.creatorId));
   }
 
@@ -46,16 +50,36 @@ class UserRequest extends Component {
     this.setState({location: e.target.value});
   }
 
+  handleselectedFile = event => {
+    this.setState({
+      selectedFile: event.target.files[0],
+      loaded: 0
+    })
+  }
+
   testFile(e) {
     console.log("testFilee");
     console.log(e.target.type);
-    console.log(e.target.value);
+    console.log(e.target.files[0].name);
+    this.state.selectedFile = e.target.files[0];//this.setState({selectedFile: e.target.files[0]});
+    console.log(this.state.selectedFile.name);
+    const data = new FormData();
+    data.append('file', this.state.selectedFile, this.state.selectedFile.name)
+
+    this.props.dispatch(requestActions.UploadPhoto(data));
   }
 
   openSheet () {
     console.log(this.state.location);
     console.log(this.state.remark);
     console.log(this.state.creatorId);
+    console.log(this.state.selectedFile.name);
+
+    /*const data = new FormData()
+    data.append('file', this.state.selectedFile, this.state.selectedFile.name)
+
+    this.props.dispatch(requestActions.UploadPhoto(data));*/
+
     this.props.dispatch(requestActions.postRequest(this.state.location, this.state.remark, this.state.creatorId));
 
     this.setState({ popout:
@@ -83,7 +107,7 @@ class UserRequest extends Component {
   }
 
   render() {
-    //if (!this.props.typeJobs) return this.renderLoading();  //onClick={this.showCongrats.bind(this)}
+    //if (!this.props.typeJobs) return this.renderLoading();  //
     return (
       <View popout={this.state.popout} id="requestView" activePanel={this.state.activePanel}>
         <Panel id="requestView">
@@ -96,6 +120,9 @@ class UserRequest extends Component {
             <File top="Загрузите фото" before={<Icon24Camera />} size="l" onChange={this.testFile}>
               Открыть галерею
             </File>
+            <Div>
+                <Progress value={Math.round(this.state.loaded, 2)} />
+            </Div>
              <Div>
                <Button size="xl" level="secondary" onClick={this.openSheet.bind(this)}>Оставить заявку</Button>
              </Div>
@@ -118,7 +145,8 @@ class UserRequest extends Component {
 
 function mapStateToProps(state) {
   return {
-    locations: requestSelectors.getLocations(state)
+    locations: requestSelectors.getLocations(state),
+    urls: requestSelectors.photoLoad(state)
   };
 }
 

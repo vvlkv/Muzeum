@@ -12,6 +12,46 @@ export function fetchLocations() {
   }
 }
 
+export function UploadPhoto(file) {
+  console.log("UploadPhoto1");
+  if(!file) {
+    console.log("Error UploadPhoto");
+  }
+  else {
+    var dataR =  { 'user': "AlexeyBoooooB",
+      'password': "4815162342",
+      'auth_token': "UXAB4ZKE7c20e7d94931e11396094fe5f1d3eec6",
+      'set_cookies': "TRUE ",
+      'remember_me': "TRUE "
+     };
+    var strData = JSON.stringify(dataR);
+    console.log(strData);
+    return async(dispatch, getState) => {
+      try {
+        const resp = await ibiApiService.loginPhoto(dataR);
+        dispatch({type: types.LOGIN_PHOTO, resp});
+      } catch (e) {
+        console.error(e);
+      }
+    }
+
+    dataR =  { 'file': file
+     };
+     strData = JSON.stringify(dataR);
+     console.log(strData);
+
+    return async(dispatch, getState) => {
+      try {
+        const urls = await ibiApiService.uploadPhoto(dataR);
+        dispatch({type: types.PHOTO_LOADED, urls});
+      } catch (e) {
+        console.error(e);
+      }
+    }
+
+  }
+}
+
 export function postRequest(location, remark, creatorId) {
   if(!remark) {
     remark = "Нет описания";

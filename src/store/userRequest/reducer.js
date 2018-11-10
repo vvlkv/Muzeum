@@ -4,7 +4,8 @@ import _ from 'lodash';
 
 const initialState = Immutable({
   locations: [],
-  response: {}
+  response: {},
+  url: null
 });
 
 export default function reduce(state = initialState, action = {}) {
@@ -18,6 +19,11 @@ export default function reduce(state = initialState, action = {}) {
         return state.merge({
           response: action.resp
         });
+    case types.PHOTO_LOADED:
+    console.log(action.urls);
+        return state.merge({
+          urls: action.urls
+        });
     default:
       return state;
   }
@@ -27,6 +33,12 @@ export function postTmpRequest(state) {
   console.log("postTmpRequest");
   console.log(state.user.response);
   return state.user.response;
+}
+
+export function photoLoad(state) {
+  console.log("postTmpRequest");
+  console.log(state.user.urls);
+  return state.user.urls;
 }
 
 export function getLocations(state) {

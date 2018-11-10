@@ -346,6 +346,41 @@ class IbiApi {
       return data;
     }
 
+    async loginPhoto(dataR) {
+      const url = `https://api.imageshack.com/v2/user/login`;
+      console.log("loginPhoto");
+      const response = await fetch(url, {
+        method: 'POST',
+        mode: 'cors',
+        headers:{
+          'Access-Control-Allow-Origin':'*'
+        },
+        body: JSON.stringify(dataR)
+      });
+      if (!response.ok) {
+        console.log("loginPhoto not ok");
+        throw new Error(`imageshack failed, HTTP status ${response.status}`)
+      }
+      const data = await response.json();
+      console.log(data);
+      return data;
+    }
+
+    async updatePhoto(dataR) {
+      const url = `https://api.imageshack.com/v2/images`;
+      console.log("updatePhoto");
+      const response = await fetch(url, {
+        method: 'POST',
+        body: JSON.stringify(dataR)
+      });
+      if (!response.ok) {
+        console.log("addComment not ok");
+        throw new Error(`Worldclock getTime failed, HTTP status ${response.status}`)
+      }
+      const data = await response.json();
+      return _.get(data, 'urls');
+    }
+
 }
 
 export default new IbiApi();
