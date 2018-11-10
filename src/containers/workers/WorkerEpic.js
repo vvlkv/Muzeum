@@ -36,7 +36,7 @@ class WorkerEpic extends Component {
             onClick={this.onStoryChange}
             selected={this.state.activeStory === 'map'}
             data-story="map"
-          >{osname === IOS ? <Icon28ChevronUser/> : <Icon24User/>}</TabbarItem>
+          >{osname === IOS ? <Icon28ChevronPlace/> : <Icon24Place/>}</TabbarItem>
         </Tabbar>
       }>
       <RequestsScreen id="requests" activePanel="requests"/>
