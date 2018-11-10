@@ -54,6 +54,7 @@ class WorkersItem extends Component {
   }
 
   showEmployee(e) {
+    console.log(e);
   }
 
   componentWillMount() {
@@ -65,7 +66,6 @@ class WorkersItem extends Component {
 
   registerNewEmployee() {
     this.props.dispatch(employeeActions.createEmployee("Иван", "Иванов", this.state.area, "1995-20-10", this.state.workerID, this.state.timeTable, "WRK", this.state.password, this.state.post, "89213877640", this.state.workPhone, "vvlkv@icloud.com"))
-    this.setState({activePanel: "workers"})
   }
 
   preRender() {
@@ -93,6 +93,7 @@ class WorkersItem extends Component {
 
   render() {
     if (!this.props.posts || !this.props.timeTables || !this.props.workers) return  this.preRender();
+    console.log(_.findIndex(this.props.posts, { 'id': 1 }));
     return (
       <UI.Root activeView={this.state.activeView}>
         <UI.View id="main" activePanel={this.state.activePanel}>
@@ -103,7 +104,7 @@ class WorkersItem extends Component {
             </UI.PanelHeader>
             <UI.Group>
               <UI.List>
-                {this.props.workers.map(employee => <div> <UI.Cell expandable multiline description={this.getPostName.bind(this, employee.post)} onClick={this.showEmployee.bind(this, employee.name)}> {employee.name} {employee.lastname} </UI.Cell> </div>)}
+                {this.props.workers.map(employee => <div> <UI.Cell expandable description={this.getPostName.bind(this, employee.post)} onClick={this.showEmployee.bind(this, employee.name)}> {employee.name} {employee.lastname} </UI.Cell> </div>)}
               </UI.List>
             </UI.Group>
           </UI.Panel>
