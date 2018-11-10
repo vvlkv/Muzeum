@@ -25,7 +25,7 @@ class MainScreen extends Component {
   }
 
   componentDidMount() {
-		VKUI.subscribe((e) => {
+		/*VKUI.connect.subscribe((e) => {
 			switch (e.detail.type) {
 				case 'VKWebAppGetUserInfoResult':
 					this.setState({ fetchedUser: e.detail.data });
@@ -34,7 +34,7 @@ class MainScreen extends Component {
 					console.log(e.detail.type);
 			}
 		});
-		VKUI.send('VKWebAppGetUserInfo', {});
+		VKUI.connect.send('VKWebAppGetUserInfo', {});*/
 	}
 
   preRender() {
@@ -57,7 +57,7 @@ class MainScreen extends Component {
           <Panel id='mainscreen'>
             <PanelHeader ></PanelHeader>
             <Button size="xl" level="2" onClick={this.showRequest.bind(this)}>
-              Посетитель1
+              Посетитель12
             </Button>
             <Button size="xl" level="2" onClick={this.showWorkerEpic.bind(this)}>
               Работник

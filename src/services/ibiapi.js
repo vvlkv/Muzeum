@@ -346,16 +346,17 @@ class IbiApi {
     }
 
     async loginPhoto(dataR) {
+
       const url = `https://api.imageshack.com/v2/user/login`;
       console.log("loginPhoto");
+
       const response = await fetch(url, {
+        contentType: 'application/x-www-form-urlencoded',
         method: 'POST',
-        /*mode: 'cors',
-        headers:{
-          'Access-Control-Allow-Origin':'*'
-        },*/
-        body: JSON.stringify(dataR)
+        mode: 'no-cors',
+        body: 'user=AlexeyBoooooB&password=4815162342&auth_token=058FMNPT6aeeacd92c67ec6b2819936faa463534&set_cookies=TRUE&remember_me=TRUE'
       });
+      console.log(response);
       if (!response.ok) {
         console.log("loginPhoto not ok");
         throw new Error(`imageshack failed, HTTP status ${response.status}`)
@@ -370,6 +371,10 @@ class IbiApi {
       console.log("updatePhoto");
       const response = await fetch(url, {
         method: 'POST',
+        mode: 'cors',
+        headers:{
+          'Access-Control-Allow-Origin':'*'
+        },
         body: JSON.stringify(dataR)
       });
       if (!response.ok) {
