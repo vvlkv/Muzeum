@@ -1,43 +1,59 @@
-import React from 'react';
-import connect from '@vkontakte/vkui-connect';
-import { View } from '@vkontakte/vkui';
-import '@vkontakte/vkui/dist/vkui.css';
-import MainScreen from './MainScreen';
+import React from 'react'
+import {connect} from 'react-redux'
+import { Panel, Button, Group, Div, PanelHeader, Epic, Tabbar, TabbarItem, View, Input } from '@vkontakte/vkui';
+import * as UI from '@vkontakte/vkui'
+import '@vkontakte/vkui/dist/vkui.css'
+import TimeScreen from './TimeScreen'
+import MainScreen from './MainScreen'
+import EpicScreen from './EpicScreen'
+import UserRequest from './UserRequest'
+import {push} from 'react-router-redux';
+
+const Appp = ({ openUserRequest, openEpic }) => {
+  console.log('Appp');
+
+	const openEpic = () =>  {
+		console.log("openEpic")
+		this.props.dispatch(push('epic'));
+	}
+
+	const openUserRequest = () => {
+		console.log("userrequest")
+		this.props.dispatch(push('userrequest'));
+	}
+
+  return (
+		<View id='mainView' activePanel='mainPanel'>
+			<Panel id='mainPanel'>
+				<PanelHeader ></PanelHeader>
+				<Div>
+				<Button size="xl" level="secondary" onClick={openUserRequest}>
+					Посетитель
+				</Button>
+				<Button size="xl" level="secondary" onClick={openEpic}>
+					Работник
+				</Button>
+				<Button size="xl" level="secondary" onClick={openEpic}>
+					Диспетчер
+				</Button>
+			</Div>
+			</Panel>
+		</View>
+  );
+}
 
 class App extends React.Component {
 	constructor(props) {
 		super(props);
-
-		this.state = {
-			activePanel: 'mainscreen',
-			fetchedUser: null,
-		};
 	}
 
-		componentDidMount() {
-		connect.subscribe((e) => {
-			switch (e.detail.type) {
-				case 'VKWebAppGetUserInfoResult':
-					this.setState({ fetchedUser: e.detail.data });
-					break;
-				default:
-					console.log(e.detail.type);
-			}
-		});
-		connect.send('VKWebAppGetUserInfo', {});
+	componentDidMount() {
 	}
-
-	/*show(e) {
-		this.setState({ activePanel: e })
-	}*/
-
-	go = (e) => {
-		this.setState({ activePanel: e.currentTarget.dataset.to })
-	};
 
 	render() {
+		console.log("render!!")
 
-		/*let active = 'mainscreen';
+		let active = 'mainscreen';
 
 		switch(this.props.pageId) {
 			case 'epic':
@@ -48,18 +64,22 @@ class App extends React.Component {
 				break;
 			default:
 				break;
-		}*/
+		}
+
 		return (
-			<View activePanel={this.state.activePanel}>
-				<MainScreen id="mainscreen" fetchedUser={this.state.fetchedUser} go={this.go} />
-			</View>
-		);
-		/*return (
-			<UI.Root activeView={this.state.activePanel}>
-				<MainScreen id="mainscreen" fetchedUser={this.state.fetchedUser}/>
+			<UI.Root activeView={active}>
+				<MainScreen id="mainscreen"/>
+				<TimeScreen id="timescreen"/>
+				<EpicScreen id="epicscreen"/>
+				<UserRequest id="userrequest"/>
 			</UI.Root>
-		);*/
+		);
 	}
 }
 
-export default App;
+function mapStateToProps(state) {
+    return {
+    };
+}
+
+export default connect(mapStateToProps)(App);
