@@ -265,14 +265,13 @@ class IbiApi {
     /************************************NOT USED********************************************************/
     /***********************************POST METHOD*******************************************************/
 
-    async postModerateTmpRequest() {
+    async postModerateTmpRequest(body) {
       const url = `${IBISOLUTIONS_ENDPOINT}/restapi/api_moderate_tmp_request.php`;
       console.log("postModerateTmpRequest");
+      console.log(JSON.stringify(body));
       const response = await fetch(url, {
         method: 'POST',
-        headers: {
-          Accept: 'application/json'
-        }
+        body: JSON.stringify(body)
       });
       if (!response.ok) {
         console.log("postModerateTmpRequest not ok");
