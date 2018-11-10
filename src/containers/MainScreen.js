@@ -50,7 +50,7 @@ class MainScreen extends Component {
     );
   }
   render() {
-    //if (!this.props.locations) return this.preRender();
+    if (!this.props.locations) return this.preRender();
     return (
       <Root activeView={this.state.activePanel}>
         <View id="mainscreen" activePanel="mainscreen">
