@@ -19,7 +19,7 @@ class MainScreen extends Component {
   }
 
   componentDidMount() {
-    this.props.dispatch(requestActions.fetchJobs())
+    this.props.dispatch(requestActions.fetchLocations())
   }
 
   preRender() {
@@ -35,7 +35,7 @@ class MainScreen extends Component {
     );
   }
   render() {
-    if (!this.props.jobTypes) return this.preRender();
+    if (!this.props.locations) return this.preRender();
     return (
       <Root activeView={this.state.activePanel}>
         <View id="mainscreen" activePanel="mainscreen">
@@ -75,7 +75,7 @@ class MainScreen extends Component {
 function mapStateToProps(state) {
   console.log("mapStateToProps");
   return {
-    jobTypes: requestSelectors.getJobTypes(state)
+    locations: requestSelectors.getLocations(state)
   };
 }
 

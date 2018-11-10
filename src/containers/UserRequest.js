@@ -54,7 +54,7 @@ class UserRequest extends Component {
           <FormLayout>
             <Textarea top="Описание" placeholder="Оставтье описание заявки" onChange={this.changeRemark}/>
             <Select top="Номер зала" placeholder="Выберите номер зала" onChange={this.changeLocation}>
-              {this.props.typeJobs.map(job => <option value={job.id}>{job.name}</option>)}
+              {this.props.locations.map(location => <option value={location.id}>{location.name}</option>)}
             </Select>
             <File top="Загрузите фото" before={<Icon24Camera />} size="l">
               Открыть галерею
@@ -81,7 +81,7 @@ class UserRequest extends Component {
 
 function mapStateToProps(state) {
   return {
-    typeJobs: requestSelectors.getJobTypes(state)
+    locations: requestSelectors.getLocations(state)
   };
 }
 
