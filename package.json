@@ -1,7 +1,7 @@
 {
   "name": "Muzeum",
   "version": "1.0.0",
-  "homepage": "http://vmuzee.ibisolutions.ru/",
+  "homepage": "https://vmuzee.ibisolutions.ru/",
   "description": "",
   "main": "index.js",
   "scripts": {
