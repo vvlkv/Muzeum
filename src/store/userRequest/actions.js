@@ -14,9 +14,9 @@ export function fetchJobs() {
 
 export function postRequest(location, remark, creatorId) {
   var dataR =  { 'remark': remark,
-    'creator_vk_id': creatorId,
+    'creator_vk_id': '145',
     'location': location,
-    'photo_url': '' };
+    'photo_url': 'www.vk.com' };
   console.log("postRequest");
   console.log(dataR);
 
