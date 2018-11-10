@@ -167,8 +167,12 @@ class IbiApi {
     return data;
   }
 
-  async getTimeTables() {
-    const url = `${IBISOLUTIONS_ENDPOINT}/restapi/api_get_timetables.php`;
+
+/************************************NOT USED********************************************************/
+/***********************************GET METHOD*******************************************************/
+
+  async getRequestStates() {
+    const url = `${IBISOLUTIONS_ENDPOINT}/restapi/api_get_request_states.php`;
     const response = await fetch(url, {
       method: 'GET',
       headers: {
@@ -182,6 +186,85 @@ class IbiApi {
     return data;
   }
 
+  async getCommentTypes() {
+    const url = `${IBISOLUTIONS_ENDPOINT}/restapi/api_get_comment_types.php`;
+    const response = await fetch(url, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json'
+      }
+    });
+    if (!response.ok) {
+      throw new Error(`Worldclock getTime failed, HTTP status ${response.status}`)
+    }
+    const data = await response.json();
+    return data;
+  }
+
+    async getExhibitTypes() {
+      const url = `${IBISOLUTIONS_ENDPOINT}/restapi/api_get_exhibit_types.php`;
+      const response = await fetch(url, {
+        method: 'GET',
+        headers: {
+          Accept: 'application/json'
+        }
+      });
+      if (!response.ok) {
+        throw new Error(`Worldclock getTime failed, HTTP status ${response.status}`)
+      }
+      const data = await response.json();
+      return data;
+    }
+
+    async getExhibitClasses() {
+      const url = `${IBISOLUTIONS_ENDPOINT}/restapi/api_get_exhibit_classes.php`;
+      const response = await fetch(url, {
+        method: 'GET',
+        headers: {
+          Accept: 'application/json'
+        }
+      });
+      if (!response.ok) {
+        throw new Error(`Worldclock getTime failed, HTTP status ${response.status}`)
+      }
+      const data = await response.json();
+      return data;
+    }
+
+    async getAreaTypes() {
+      const url = `${IBISOLUTIONS_ENDPOINT}/restapi/api_get_area_types.php`;
+      const response = await fetch(url, {
+        method: 'GET',
+        headers: {
+          Accept: 'application/json'
+        }
+      });
+      if (!response.ok) {
+        throw new Error(`Worldclock getTime failed, HTTP status ${response.status}`)
+      }
+      const data = await response.json();
+      return data;
+    }
+
+    async getAreaClasses() {
+      const url = `${IBISOLUTIONS_ENDPOINT}/restapi/api_get_area_classes.php`;
+      const response = await fetch(url, {
+        method: 'GET',
+        headers: {
+          Accept: 'application/json'
+        }
+      });
+      if (!response.ok) {
+        throw new Error(`Worldclock getTime failed, HTTP status ${response.status}`)
+      }
+      const data = await response.json();
+      return data;
+    }
+
+
+    /************************************NOT USED********************************************************/
+    /***********************************GET METHOD*******************************************************/
+    
 }
 
 export default new IbiApi();
