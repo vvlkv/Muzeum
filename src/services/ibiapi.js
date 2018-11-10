@@ -1,6 +1,6 @@
 import _ from 'lodash';
 
-const IBISOLUTIONS_ENDPOINT = 'http://vkapi.ibisolutions.ru/';
+const IBISOLUTIONS_ENDPOINT = 'https://vkapi.ibisolutions.ru/';
 
 class IbiApi {
 
@@ -351,10 +351,10 @@ class IbiApi {
       console.log("loginPhoto");
       const response = await fetch(url, {
         method: 'POST',
-        mode: 'cors',
+        /*mode: 'cors',
         headers:{
           'Access-Control-Allow-Origin':'*'
-        },
+        },*/
         body: JSON.stringify(dataR)
       });
       if (!response.ok) {
