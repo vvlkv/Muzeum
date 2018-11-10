@@ -24,13 +24,12 @@ class IbiApi {
     console.log("postTmpRequest");
     const response = await fetch(url, {
       method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(dataR)
-    });
+      body: dataR
+    }).catch (function (error) {
+    console.log('Request failed', error); });
+      console.log("postTmpRequest non ok");
     if (!response.ok) {
+      console.log("postTmpRequest non ok");
       throw new Error(`Worldclock getTime failed, HTTP status ${response.status}`)
     }
     const data = await response.json();
