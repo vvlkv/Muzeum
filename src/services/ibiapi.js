@@ -20,14 +20,10 @@ class IbiApi {
   }
 
   async postTmpRequest(dataR) {
-    const url = `${WORLDCLOCK_ENDPOINT}/api_create_tmp_request.php`;
+    const url = `${WORLDCLOCK_ENDPOINT}/restapi/api_create_tmp_request.php`;
     console.log("postTmpRequest");
     const response = await fetch(url, {
       method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json'
-      },
       body: JSON.stringify(dataR)
     });
     if (!response.ok) {

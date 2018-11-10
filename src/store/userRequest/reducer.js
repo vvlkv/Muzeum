@@ -14,6 +14,7 @@ export default function reduce(state = initialState, action = {}) {
         jobTypes: action.time
       });
     case types.TMP_REQUEST_POSTED:
+    console.log(action.resp);
         return state.merge({
           response: action.resp
         });
