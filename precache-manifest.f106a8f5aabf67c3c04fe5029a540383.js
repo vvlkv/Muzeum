@@ -1,7 +1,7 @@
 self.__precacheManifest = [
   {
-    "revision": "515fcc2c2f84faae9b26",
-    "url": "/Muzeum/static/js/main.515fcc2c.chunk.js"
+    "revision": "0a37572f6716ebae2aeb",
+    "url": "/Muzeum/static/js/main.0a37572f.chunk.js"
   },
   {
     "revision": "2dfe6e7acd06ad037f10",
@@ -16,7 +16,7 @@ self.__precacheManifest = [
     "url": "/Muzeum/static/js/runtime~main.e6a34f2d.js"
   },
   {
-    "revision": "10106008d7543ad6689e84c183b6f8b4",
+    "revision": "e89093ce56806c851bc9d60417b90572",
     "url": "/Muzeum/index.html"
   }
 ];
