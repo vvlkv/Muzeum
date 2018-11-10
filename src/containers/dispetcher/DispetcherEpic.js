@@ -6,6 +6,10 @@ import Icon24Search from '@vkontakte/icons/dist/24/search';
 import WorkersItem from './WorkersItem'
 import RequestsItem from './RequestsItem'
 
+import Icon24Note from '@vkontakte/icons/dist/24/note';
+import Icon24Users from '@vkontakte/icons/dist/24/users';
+import Icon24User from '@vkontakte/icons/dist/24/user';
+
 class DispetcherEpic extends Component {
   constructor(props) {
     super(props);
@@ -27,17 +31,17 @@ class DispetcherEpic extends Component {
             onClick={this.onStoryChange}
             selected={this.state.activeStory === 'workers'}
             data-story="workers"
-          ></UI.TabbarItem>
+          ><Icon24Users/></UI.TabbarItem>
           <UI.TabbarItem
             onClick={this.onStoryChange}
             selected={this.state.activeStory === 'requests'}
             data-story="requests"
-          ></UI.TabbarItem>
+          ><Icon24Note/></UI.TabbarItem>
           <UI.TabbarItem
             onClick={this.onStoryChange}
             selected={this.state.activeStory === 'discover'}
             data-story="discover"
-          ></UI.TabbarItem>
+          ><Icon24User/></UI.TabbarItem>
         </UI.Tabbar>
       }>
       <WorkersItem id="workers"/>
