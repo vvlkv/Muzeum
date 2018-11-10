@@ -61,7 +61,6 @@ class WorkersItem extends Component {
   }
 
   showEmployee(e) {
-    console.log(e);
   }
 
   componentWillMount() {
@@ -71,6 +70,7 @@ class WorkersItem extends Component {
 
   registerNewEmployee() {
     this.props.dispatch(employeeActions.createEmployee("Иван", "Иванов", this.state.area, "1995-20-10", this.state.workerID, this.state.timeTable, "WRK", this.state.password, this.state.post, "89213877640", this.state.workPhone, "vvlkv@icloud.com"))
+    this.setState({activePanel: "workers"})
   }
 
   preRender() {

@@ -49,10 +49,6 @@ class RequestsItem extends Component {
   }
 
   showTempRequest(request, categoryJobss) {
-    console.log("request");
-    //this.props.dispatch(requestActions.fetchCategoryOfJobs());
-    console.log(request);
-    console.log(this.state.jobType);
     this.setState({
       categoryJob:"",
       activePanel: "showtemprequest",

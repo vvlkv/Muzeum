@@ -39,11 +39,10 @@ class UserRequest extends Component {
   }
 
   showCongrats() {
+    console.log("showCongrats");
     console.log(this.state.location);
-    console.log(this.state.remark);
-    console.log(this.state.creatorId);
+    console.log(this.state.selectedFile.name);
     console.log(this.state.urls);
-    this.props.dispatch(requestActions.postRequest(this.state.location, this.state.remark, this.state.creatorId));
   }
 
   changeRemark(e) {
@@ -61,53 +60,42 @@ class UserRequest extends Component {
     })
   }
 
-  testFile(e) {
-    console.log("testFilee");
+  uploadPhoto(e) {
+    console.log("uploadPhoto");
     console.log(e.target.type);
     console.log(e.target.files[0].name);
-    this.state.selectedFile = e.target.files[0];//this.setState({selectedFile: e.target.files[0]});
-    console.log(this.state.selectedFile.name);
+    this.state.selectedFile = e.target.files[0];
     const data = new FormData();
     data.append('file', this.state.selectedFile, this.state.selectedFile.name)
-
-    this.props.dispatch(requestActions.UploadPhoto(data));
+    // this.props.dispatch(requestActions.UploadPhoto(data));
   }
 
   openSheet () {
-    console.log(this.state.location);
-    console.log(this.state.remark);
-    console.log(this.state.creatorId);
+    console.log("openSheet");
     console.log(this.state.selectedFile.name);
 
-    /*const data = new FormData()
-    data.append('file', this.state.selectedFile, this.state.selectedFile.name)
+    this.props.dispatch(requestActions.postRequest(this.state.location, this.state.remark, this.state.creatorId, this.state.selectedFile));
 
-    this.props.dispatch(requestActions.UploadPhoto(data));*/
-
-    this.props.dispatch(requestActions.postRequest(this.state.location, this.state.remark, this.state.creatorId));
-
-    this.setState({ popout:
-      <Alert
-        actions={[{
-          title: 'Закрыть',
-          autoclose: true,
-          style: 'destructive'
-        }, {
-          title: 'Ок',
-          autoclose: true,
-          style: 'cancel'
-        }]}
-        onClose={ () => {
-          console.log("Exit alert!");
-          this.changeRemark({target: {value: ""}});
-          this.setState({remark: ""});
-          console.log(this.state.remark);
-          this.setState({ popout: null }) }}
-      >
-        <h2>Заявка отправлена</h2>
-        <p>Спасибо за участие!</p>
-      </Alert>
-    });
+    // this.setState({ popout:
+    //   <Alert
+    //     actions={[{
+    //       title: 'Закрыть',
+    //       autoclose: true,
+    //       style: 'destructive'
+    //     }, {
+    //       title: 'Ок',
+    //       autoclose: true,
+    //       style: 'cancel'
+    //     }]}
+    //     onClose={ () => {
+    //       this.changeRemark({target: {value: ""}});
+    //       this.setState({remark: ""});
+    //       this.setState({popout: null }) }}
+    //   >
+    //     <h2>Заявка отправлена</h2>
+    //     <p>Спасибо за участие!</p>
+    //   </Alert>
+    // });
   }
 
   render() {
@@ -117,11 +105,11 @@ class UserRequest extends Component {
         <Panel id="requestView">
           <PanelHeader>Заявка</PanelHeader>
           <FormLayout>
-            <Textarea top="Описание" placeholder="Оставтье описание заявки" onChange={this.changeRemark.bind(this)}/>
+            <Textarea top="Описание" placeholder="Оставьте описание заявки" onChange={this.changeRemark.bind(this)}/>
             <Select top="Номер зала" placeholder="Выберите номер зала" onChange={this.changeLocation}>
               {this.props.locations.map(location => <option value={location.id}>{location.id} - {location.name}</option>)}
             </Select>
-            <File top="Загрузите фото" before={<Icon24Camera />} size="l" onChange={this.testFile}>
+            <File top="Загрузите фото" before={<Icon24Camera />} size="l" onChange={this.uploadPhoto}>
               Открыть галерею
             </File>
             <Div>
@@ -140,7 +128,7 @@ class UserRequest extends Component {
       		>
           Persik
         </PanelHeader>
-          <Input type="text" defaultValue="Спасибл"></Input>
+          <Input type="text" defaultValue="Спасибо"></Input>
         </Panel>
       </View>
     );

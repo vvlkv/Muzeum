@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import axios from 'axios';
 
 const IBISOLUTIONS_ENDPOINT = 'https://vkapi.ibisolutions.ru/';
 
@@ -19,19 +20,48 @@ class IbiApi {
     return data;
   }
 
-  async postTmpRequest(dataR) {
-    const url = `${IBISOLUTIONS_ENDPOINT}/restapi/api_create_tmp_request.php`;
+  async postTmpRequest(location, remark, creatorId, photo) {
+    // const url = `${IBISOLUTIONS_ENDPOINT}restapi/api_create_tmp_request.php`;
+    const url = 'http://vkapi.ibisolutions.ru/restapi/api_create_tmp_request.php';
     console.log("postTmpRequest");
-    const response = await fetch(url, {
-      method: 'POST',
-      body: JSON.stringify(dataR)
-    });
-    if (!response.ok) {
-      console.log("postTmpRequest non ok");
-      throw new Error(`Worldclock getTime failed, HTTP status ${response.status}`)
-    }
-    const data = await response.json();
-    return data;
+    console.log("postTmpRequest2");
+    console.log(location);
+    console.log(remark);
+    console.log(creatorId);
+    console.log(photo);
+    console.log(photo.name);
+    var formData = new FormData();
+    formData.append('file', photo, photo.name)
+    // var blob = new Blob(photo, {type: "image/png"});
+    axios.post("https://vkapi.ibisolutions.ru/restapi/api_create_tmp_request.php", {
+      method: 'post',
+      headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Content-Type': `multipart/form-data`,
+      },
+      data: {
+        remark: remark,
+        creator_vk_id: creatorId,
+        location: location,
+        photo_url: formData
+      }
+    }).then(function (response) {
+                console.log(response);
+              })
+              .catch(function (error) {
+                console.log(error);
+            });
+
+    // const response = await fetch(url, {
+    //   method: 'POST',
+    //   body: JSON.stringify(dataR)
+    // });
+    // if (!response.ok) {
+    //   console.log("postTmpRequest non ok");
+    //   throw new Error(`Worldclock getTime failed, HTTP status ${response.status}`)
+    // }
+    // const data = await response.json();
+    // return data;
   }
 
   async getTmpRequests() {
@@ -64,6 +94,7 @@ class IbiApi {
 
   async createRequest(dataR) {
     const url = `${IBISOLUTIONS_ENDPOINT}/restapi/api_create_request.php`;
+    console.log("postTmpRequest");
     console.log("postTmpRequest");
     const response = await fetch(url, {
       method: 'POST',
@@ -154,13 +185,11 @@ class IbiApi {
 
   async createEmployee(dataR) {
     const url = `${IBISOLUTIONS_ENDPOINT}/restapi/api_create_user.php`;
-    console.log("postTmpRequest");
     const response = await fetch(url, {
       method: 'POST',
       body: JSON.stringify(dataR)
     });
     if (!response.ok) {
-      console.log("postTmpRequest non ok");
       throw new Error(`Worldclock getTime failed, HTTP status ${response.status}`)
     }
     const data = await response.json();
@@ -261,10 +290,6 @@ class IbiApi {
       return data;
     }
 
-
-    /************************************NOT USED********************************************************/
-    /***********************************POST METHOD*******************************************************/
-
     async postModerateTmpRequest(body) {
       const url = `${IBISOLUTIONS_ENDPOINT}/restapi/api_moderate_tmp_request.php`;
       console.log("postModerateTmpRequest");
@@ -344,48 +369,48 @@ class IbiApi {
       const data = await response.json();
       return data;
     }
-
-    async loginPhoto(dataR) {
-
-      const url = `https://api.imageshack.com/v2/user/login`;
-      console.log("loginPhoto");
-      console.log(JSON.stringify(dataR));
-      const response = await fetch(url, {
-        method: 'POST',
-        mode: 'cors',
-        headers: {
-          'Access-Control-Allow-Origin':'*'
-        },
-        body: JSON.stringify(dataR)
-      });
-      console.log(response);
-      if (!response.ok) {
-        console.log("loginPhoto not ok");
-        throw new Error(`imageshack failed, HTTP status ${response.status}`)
-      }
-      const data = await response.json();
-      console.log(data);
-      return data;
-    }
-
-    async updatePhoto(dataR) {
-      const url = `https://api.imageshack.com/v2/images`;
-      console.log("updatePhoto");
-      const response = await fetch(url, {
-        method: 'POST',
-        mode: 'cors',
-        headers:{
-          'Access-Control-Allow-Origin':'*'
-        },
-        body: JSON.stringify(dataR)
-      });
-      if (!response.ok) {
-        console.log("addComment not ok");
-        throw new Error(`Worldclock getTime failed, HTTP status ${response.status}`)
-      }
-      const data = await response.json();
-      return _.get(data, 'urls');
-    }
+    //
+    // async loginPhoto(dataR) {
+    //
+    //   const url = `https://api.imageshack.com/v2/user/login`;
+    //   console.log("loginPhoto");
+    //   console.log(JSON.stringify(dataR));
+    //   const response = await fetch(url, {
+    //     method: 'POST',
+    //     mode: 'cors',
+    //     headers: {
+    //       'Access-Control-Allow-Origin':'*'
+    //     },
+    //     body: JSON.stringify(dataR)
+    //   });
+    //   console.log(response);
+    //   if (!response.ok) {
+    //     console.log("loginPhoto not ok");
+    //     throw new Error(`imageshack failed, HTTP status ${response.status}`)
+    //   }
+    //   const data = await response.json();
+    //   console.log(data);
+    //   return data;
+    // }
+    //
+    // async updatePhoto(dataR) {
+    //   const url = `https://api.imageshack.com/v2/images`;
+    //   console.log("updatePhoto");
+    //   const response = await fetch(url, {
+    //     method: 'POST',
+    //     mode: 'cors',
+    //     headers:{
+    //       'Access-Control-Allow-Origin':'*'
+    //     },
+    //     body: JSON.stringify(dataR)
+    //   });
+    //   if (!response.ok) {
+    //     console.log("addComment not ok");
+    //     throw new Error(`Worldclock getTime failed, HTTP status ${response.status}`)
+    //   }
+    //   const data = await response.json();
+    //   return _.get(data, 'urls');
+    // }
 
 }
 

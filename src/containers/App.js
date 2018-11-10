@@ -7,33 +7,6 @@ import MainScreen from './MainScreen'
 import UserRequest from './UserRequest'
 import {push} from 'react-router-redux';
 
-// const Appp = ({ openUserRequest, openEpic }) => {
-//
-// 	const openUserRequest = () => {
-// 		console.log("userrequest")
-// 		this.props.dispatch(push('userrequest'));
-// 	}
-//
-//   return (
-// 		<View id='mainView' activePanel='mainPanel'>
-// 			<Panel id='mainPanel'>
-// 				<PanelHeader ></PanelHeader>
-// 				<Div>
-// 				<Button size="xl" level="secondary" onClick={openUserRequest}>
-// 					Посетитель
-// 				</Button>
-// 				<Button size="xl" level="secondary" onClick={openEpic}>
-// 					Работник
-// 				</Button>
-// 				<Button size="xl" level="secondary" onClick={openEpic}>
-// 					Диспетчер
-// 				</Button>
-// 			</Div>
-// 			</Panel>
-// 		</View>
-//   );
-// }
-
 class App extends React.Component {
 	constructor(props) {
 		super(props);

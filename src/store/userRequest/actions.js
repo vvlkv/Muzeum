@@ -32,7 +32,7 @@ export function imgHackLogin() {
 }
 
 export function UploadPhoto(file) {
-  console.log("UploadPhoto1");
+
   if(!file) {
     console.log("Error UploadPhoto");
   }
@@ -52,25 +52,10 @@ export function UploadPhoto(file) {
         console.error(e);
       }
     }
-/*
-    dataR =  { 'file': file
-     };
-     strData = JSON.stringify(dataR);
-     console.log(strData);
-
-    return async(dispatch, getState) => {
-      try {
-        const urls = await ibiApiService.uploadPhoto(dataR);
-        dispatch({type: types.PHOTO_LOADED, urls});
-      } catch (e) {
-        console.error(e);
-      }
-    }*/
-
   }
 }
 
-export function postRequest(location, remark, creatorId) {
+export function postRequest(location, remark, creatorId, photo) {
   if(!remark) {
     remark = "Нет описания";
   }
@@ -80,17 +65,9 @@ export function postRequest(location, remark, creatorId) {
   if(!creatorId) {
     creatorId = 12345;
   }
-  var dataR =  { 'remark': remark,
-    'creator_vk_id': creatorId,
-    'location': location,
-    'photo_url': '' };
-  var strData = JSON.stringify(dataR);
-  console.log(strData);
-  //var data = new FormData();
-  //data.append( "json", JSON.stringify( location ) );
   return async(dispatch, getState) => {
     try {
-      const resp = await ibiApiService.postTmpRequest(dataR);
+      const resp = await ibiApiService.postTmpRequest(location, remark, creatorId, photo);
       dispatch({type: types.TMP_REQUEST_POSTED, resp});
     } catch (e) {
       console.error(e);
