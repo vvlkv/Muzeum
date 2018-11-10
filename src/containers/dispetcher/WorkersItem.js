@@ -5,19 +5,12 @@ import autoBind from 'react-autobind';
 import {push} from 'react-router-redux';
 import Icon24Back from '@vkontakte/icons/dist/24/back';
 import Icon24Search from '@vkontakte/icons/dist/24/search';
+import _ from 'lodash';
+
 
 import * as employeeActions from '../../store/createEmployee/actions'
 import * as employeeSelectors from '../../store/createEmployee/reducer'
 import * as requestSelectors from '../../store/userRequest/reducer'
-
-const employers = [
-  {name: "BANKA asd", post: "IOS developer"},
-  {name: "BANKA UBIJCA", post: "IOS developer"},
-  {name: "BANKA UBIJCA", post: "IOS developer"},
-  {name: "BANKA UBIJCA", post: "IOS developer"},
-  {name: "BANKA UBIJCA", post: "IOS developer"},
-  {name: "BANKA UBIJCA", post: "IOS developer"}
-];
 
 class WorkersItem extends Component {
 
@@ -67,6 +60,8 @@ class WorkersItem extends Component {
   componentWillMount() {
     this.props.dispatch(employeeActions.fetchPosts());
     this.props.dispatch(employeeActions.fetchTimeTables());
+    this.props.dispatch(employeeActions.fetchWorkers());
+    this.props.dispatch(employeeActions.fetchPosts());
   }
 
   registerNewEmployee() {
@@ -85,8 +80,20 @@ class WorkersItem extends Component {
     )
   }
 
+  getPostName(idPost) {
+    console.log("ID" + idPost);
+    var ind = _.findIndex(this.props.posts, { 'id': idPost });
+      console.log(ind);
+    if(ind>0) {
+      return this.props.posts[ind];
+    }
+    else {
+      return 'Скрыто';
+    }
+  }
+
   render() {
-    if (!this.props.posts || !this.props.timeTables) return  this.preRender();
+    if (!this.props.posts || !this.props.timeTables || !this.props.workers) return  this.preRender();
     return (
       <UI.Root activeView={this.state.activeView}>
         <UI.View id="main" activePanel={this.state.activePanel}>
@@ -97,7 +104,7 @@ class WorkersItem extends Component {
             </UI.PanelHeader>
             <UI.Group>
               <UI.List>
-                {employers.map(employee => <UI.Cell expandable description={employee.post} onClick={this.showEmployee.bind(this, employee.name)}>{employee.name}</UI.Cell>)}
+                {this.props.workers.map(employee => <UI.Cell expandable description={this.getPostName.bind(this, employee.post)} onClick={this.showEmployee.bind(this, employee.name)}>{employee.name} {employee.lastname}</UI.Cell>)}
               </UI.List>
             </UI.Group>
           </UI.Panel>
@@ -142,7 +149,9 @@ function mapStateToProps(state) {
   return {
     posts: employeeSelectors.getPosts(state),
     timeTables: employeeSelectors.getTimeTables(state),
-    locations: requestSelectors.getLocations(state)
+    locations: requestSelectors.getLocations(state),
+    workers: employeeSelectors.getWorkers(state),
+    posts: employeeSelectors.getPosts(state)
   };
 }
 

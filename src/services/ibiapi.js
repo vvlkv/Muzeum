@@ -402,6 +402,21 @@ class IbiApi {
       return data;
     }
 
+    async getWorkers() {
+      const url = `${IBISOLUTIONS_ENDPOINT}/restapi/api_get_all_users.php`;
+      const response = await fetch(url, {
+        method: 'GET',
+        headers: {
+          Accept: 'application/json'
+        }
+      });
+      if (!response.ok) {
+        throw new Error(`Worldclock getTime failed, HTTP status ${response.status}`)
+      }
+      const data = await response.json();
+      return data;
+    }
+
 }
 
 export default new IbiApi();
