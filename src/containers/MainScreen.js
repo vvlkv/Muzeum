@@ -25,7 +25,7 @@ class MainScreen extends Component {
   }
 
   componentDidMount() {
-		VKUI.connect.subscribe((e) => {
+		/*VKUI.connect.subscribe((e) => {
 			switch (e.detail.type) {
 				case 'VKWebAppGetUserInfoResult':
 					this.setState({ fetchedUser: e.detail.data });
@@ -34,7 +34,7 @@ class MainScreen extends Component {
 					console.log(e.detail.type);
 			}
 		});
-		VKUI.connect.send('VKWebAppGetUserInfo', {});
+		VKUI.connect.send('VKWebAppGetUserInfo', {});*/
 	}
 
   preRender() {
