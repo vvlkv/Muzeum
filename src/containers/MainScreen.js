@@ -5,6 +5,7 @@ import {push} from 'react-router-redux';
 import UserRequest from './UserRequest'
 import WorkerEpic from './WorkerEpic'
 import DispetcherEpic from './DispetcherEpic'
+import * as requestActions from '../store/userRequest/actions'
 
 class MainScreen extends Component {
 
@@ -13,6 +14,10 @@ class MainScreen extends Component {
     this.state = {
 			activePanel: 'mainscreen',
 		}
+  }
+
+  componentDidMount() {
+    this.props.dispatch(requestActions.fetchJobs())
   }
   render() {
     return (
@@ -39,6 +44,7 @@ class MainScreen extends Component {
   }
 
   showRequest() {
+
     this.setState({activePanel:'request'})
   }
 
@@ -54,6 +60,7 @@ class MainScreen extends Component {
 function mapStateToProps(state) {
   console.log("mapStateToProps");
   return {
+
   };
 }
 

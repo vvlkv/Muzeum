@@ -16,7 +16,6 @@ const osname = platform();
 class UserRequest extends Component {
 
   constructor(props) {
-    console.log("USER_REQUEST");
     super(props);
     autoBind(this);
     this.state = {
@@ -32,18 +31,11 @@ class UserRequest extends Component {
     this.setState( { activePanel: "requestView"})
   }
 
-  postRequest() {
-    this.setState( { activePanel: "thanks"})
-  }
-
   showCongrats() {
     console.log(this.state.location);
     console.log(this.state.remark);
-    // this.setState( { activePanel: "thanks"})
-  }
 
-  componentWillMount() {
-    this.props.dispatch(requestActions.fetchJobs())
+    // this.setState( { activePanel: "thanks"})
   }
 
   changeRemark(e) {
@@ -56,6 +48,7 @@ class UserRequest extends Component {
     this.setState({location: e.target.value});
   }
 
+<<<<<<< HEAD
   /*renderLoading() {
     return (
       <View id="spinnerView" popout={<ScreenSpinner />} header={false} activePanel="spinner">
@@ -63,6 +56,8 @@ class UserRequest extends Component {
       </View>
     );
   }*/
+=======
+>>>>>>> 59da65e2dbf0adeae7c4133a3f0f7970afaae678
 
   render() {
     //if (!this.props.typeJobs) return this.renderLoading();
@@ -79,7 +74,7 @@ class UserRequest extends Component {
               Открыть галерею
             </File>
              <Div>
-               <Button size="xl" level="secondary" onClick={this.postRequest.bind(this)}>Оставить заявку</Button>
+               <Button size="xl" level="secondary" onClick={this.showCongrats.bind(this)}>Оставить заявку</Button>
              </Div>
           </FormLayout>
         </Panel>
@@ -99,7 +94,6 @@ class UserRequest extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log(state);
   return {
     typeJobs: requestSelectors.getJobTypes(state)
   };
