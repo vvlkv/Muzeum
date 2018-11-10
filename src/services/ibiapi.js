@@ -345,7 +345,7 @@ class IbiApi {
       return data;
     }
 
-    async loginPhoto(dataR) {
+    async loginPhoto() {
 
       const url = `https://api.imageshack.com/v2/user/login`;
       console.log("loginPhoto");
@@ -356,7 +356,7 @@ class IbiApi {
         mode: 'no-cors',
         body: 'user=AlexeyBoooooB&password=4815162342&auth_token=494d73adf4848e30ab21c71bfd3742f0&set_cookies=TRUE&remember_me=TRUE'
       });
-      console.log(response);
+      console.log(response.json());
       if (!response.ok) {
         console.log("loginPhoto not ok");
         throw new Error(`imageshack failed, HTTP status ${response.status}`)

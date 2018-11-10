@@ -18,17 +18,9 @@ export function UploadPhoto(file) {
     console.log("Error UploadPhoto");
   }
   else {
-    var dataR =  { 'user': 'AlexeyBoooooB',
-      'password': '4815162342',
-      'auth_token': '39FJKOUW5c7ef0e3b5ce8a530508ff1c3b3f2cef',
-      'set_cookies': 'FALSE',
-      'remember_me': 'FALSE'
-     };
-    var strData = JSON.stringify(dataR);
-    console.log(strData);
     return async(dispatch, getState) => {
       try {
-        const resp = await ibiApiService.loginPhoto(dataR);
+        const resp = await ibiApiService.loginPhoto();
         dispatch({type: types.LOGIN_PHOTO, resp});
       } catch (e) {
         console.error(e);
