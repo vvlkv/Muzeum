@@ -6,6 +6,15 @@ import {push} from 'react-router-redux';
 import Icon24Back from '@vkontakte/icons/dist/24/back';
 import Icon24Search from '@vkontakte/icons/dist/24/search';
 
+const employers = [
+  {name: "BANKA asd", post: "IOS developer"},
+  {name: "BANKA UBIJCA", post: "IOS developer"},
+  {name: "BANKA UBIJCA", post: "IOS developer"},
+  {name: "BANKA UBIJCA", post: "IOS developer"},
+  {name: "BANKA UBIJCA", post: "IOS developer"},
+  {name: "BANKA UBIJCA", post: "IOS developer"}
+];
+
 class WorkersItem extends Component {
 
   constructor(props) {
@@ -45,6 +54,10 @@ class WorkersItem extends Component {
     this.setState({password: e.target.value});
   }
 
+  showEmployee(e) {
+    console.log(e);
+  }
+
   render() {
     return (
       <UI.Root activeView={this.state.activeView}>
@@ -54,6 +67,14 @@ class WorkersItem extends Component {
               left={<UI.HeaderButton onClick={() => this.setState({ activePanel: "addworker"})}>Добавить</UI.HeaderButton>}>
               Сотрудники
             </UI.PanelHeader>
+            <UI.Group>
+              <UI.List>
+                {employers.map(employee => <UI.Cell expandable description={employee.post} onClick={this.showEmployee.bind(this, employee.name)}>{employee.name}</UI.Cell>)}
+              </UI.List>
+            </UI.Group>
+          </UI.Panel>
+          <UI.Panel id="aboutemployee">
+            <UI.PanelHeader>Про сотрудника</UI.PanelHeader>
           </UI.Panel>
           <UI.Panel id="addworker">
             <UI.PanelHeader>Добавить</UI.PanelHeader>
