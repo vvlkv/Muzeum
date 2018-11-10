@@ -347,18 +347,15 @@ class IbiApi {
     }
 
     async loginPhoto(dataR) {
+      
       const url = `https://api.imageshack.com/v2/user/login`;
       console.log("loginPhoto");
+
       const response = await fetch(url, {
+        contentType: 'application/x-www-form-urlencoded',
         method: 'POST',
         mode: 'no-cors',
-        headers:{
-          Accept: 'application/json',
-          /*'Access-Control-Allow-Origin': '*',
-          'Access-Control-Allow-Methods': 'GET, HEAD, POST',
-          'Access-Control-Max-Age': '3000'*/
-        },
-        body: dataR
+        body: 'user=AlexeyBoooooB&password=' + urlencode('4815162342') + '&058FMNPT6aeeacd92c67ec6b2819936faa463534',
       });
       console.log(response);
       if (!response.ok) {
