@@ -17,7 +17,6 @@ export function postRequest(location, remark, creatorId) {
     'creator_vk_id': 1234,
     'location': location,
     'photo_url': '' };
-  console.log(JSON.stringify(dataR));
   //var data = new FormData();
   //data.append( "json", JSON.stringify( location ) );
   return async(dispatch, getState) => {
