@@ -45,6 +45,12 @@ class UserRequest extends Component {
     this.setState({location: e.target.value});
   }
 
+  testFile(e) {
+    console.log("testFilee");
+    console.log(e.target.type);
+    console.log(e.target.value);
+  }
+
   render() {
     //if (!this.props.typeJobs) return this.renderLoading();
     return (
@@ -56,7 +62,7 @@ class UserRequest extends Component {
             <Select top="Номер зала" placeholder="Выберите номер зала" onChange={this.changeLocation}>
               {this.props.locations.map(location => <option value={location.id}>{location.name}</option>)}
             </Select>
-            <File top="Загрузите фото" before={<Icon24Camera />} size="l">
+            <File top="Загрузите фото" before={<Icon24Camera />} size="l" onChange={this.testFile}>
               Открыть галерею
             </File>
              <Div>
