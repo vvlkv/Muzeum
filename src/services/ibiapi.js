@@ -351,12 +351,12 @@ class IbiApi {
       console.log("loginPhoto");
       const response = await fetch(url, {
         method: 'POST',
-        mode: 'cors',
+        //mode: 'cors',
         headers:{
           Accept: 'application/json',
-          'Access-Control-Allow-Origin': '*',
+          /*'Access-Control-Allow-Origin': '*',
           'Access-Control-Allow-Methods': 'GET, HEAD, POST',
-          'Access-Control-Max-Age': '3000'
+          'Access-Control-Max-Age': '3000'*/
         },
         body: dataR
       });
