@@ -43,19 +43,17 @@ class IbiApi {
       }
     });
     if (!response.ok) {
-      throw new Error(`Worldclock getTime failed, HTTP status ${response.tmpRequest}`)
+      throw new Error(`Worldclock getTime failed, HTTP status ${response.status}`)
     }
     const data = await response.json();
     return data;
   }
 
   async getTmpRequest(id) {
-    const url = `${IBISOLUTIONS_ENDPOINT}/restapi/***`;
+    const url = `${IBISOLUTIONS_ENDPOINT}/restapi/api_get_one_tmp_request.php`;
     const response = await fetch(url, {
       method: 'GET',
-      headers: {
-        Accept: 'application/json'
-      }
+      body: JSON.stringify(id)
     });
     if (!response.ok) {
       throw new Error(`Worldclock getTime failed, HTTP status ${response.status}`)

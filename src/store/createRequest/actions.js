@@ -4,7 +4,7 @@ import ibiApiService from '../../services/ibiapi';
 xport function fetchTmpRequests() {
   return async(dispatch, getState) => {
     try {
-      const tmpRequest = await ibiApiService.getTmpRequest();
+      const tmpRequests = await ibiApiService.getTmpRequests();
       dispatch({type: types.TMP_REQUESTS_FETCHED, tmpRequests});
     } catch (e) {
       console.error(e);
@@ -13,9 +13,14 @@ xport function fetchTmpRequests() {
 }
 
 export function fetchTmpRequest(id) {
+  var dataR =  {
+    "id" : id
+  };
+  var strData = JSON.stringify(dataR);
+  console.log(strData);
   return async(dispatch, getState) => {
     try {
-      const tmpRequest = await ibiApiService.getTmpRequests();
+      const tmpRequest = await ibiApiService.getTmpRequest(dataR);
       dispatch({type: types.TMP_REQUEST_FETCHED, tmpRequest});
     } catch (e) {
       console.error(e);

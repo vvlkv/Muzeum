@@ -4,6 +4,7 @@ import _ from 'lodash';
 
 const initialState = Immutable({
   tmpRequest: [], //{}?????????????????????????
+  tmpRequests: [],
   jobTypes: [],
   jobCategories: [],
   locations: [],
@@ -15,6 +16,10 @@ export default function reduce(state = initialState, action = {}) {
     case types.TMP_REQUESTS_FETCHED:
       return state.merge({
         tmpRequests: action.tmpRequests
+      });
+    case types.TMP_REQUEST_FETCHED:
+      return state.merge({
+        tmpRequest: action.tmpRequest
       });
     case types.TYPE_JOBS_FETCHED:
       return state.merge({
@@ -48,6 +53,11 @@ export function createRequest(state) {
 export function getTmpRequest(state) {
   console.log(state.request.tmpRequest);
   return state.request.tmpRequest;
+}
+
+export function getTmpRequests(state) {
+  console.log(state.request.tmpRequests);
+  return state.request.tmpRequests;
 }
 
 export function getTypeJobs(state) {
