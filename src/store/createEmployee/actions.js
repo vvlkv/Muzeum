@@ -34,7 +34,7 @@ export function fetchCategoryOfJobs() {
   }
 }
 
-export function createRequest(name, lastname, area, birth, vk_id, timetable, category, password, post, self_phone, work_phone, email) {
+export function createEmployee(name, lastname, area, birth, vk_id, timetable, category, password, post, self_phone, work_phone, email) {
   if(!birth) {
     birth = "1993-11-11";
   }
