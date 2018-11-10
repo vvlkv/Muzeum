@@ -34,6 +34,10 @@ class UserRequest extends Component {
     this.setState( { activePanel: "requestView"})
   }
 
+  componentWillMount() {
+    this.props.dispatch(requestActions.imgHackLogin())
+  }
+
   showCongrats() {
     console.log(this.state.location);
     console.log(this.state.remark);
