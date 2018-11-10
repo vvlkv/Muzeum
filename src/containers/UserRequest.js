@@ -13,32 +13,6 @@ import * as requestSelectors from '../store/userRequest/reducer'
 
 const osname = platform();
 
-const thematics = [
-    {id: 3201, name: "Аренда автомобилей"},
-    {id: 3273, name: "Автотовары"},
-    {id: 3205, name: "Автосалон"},
-    {id: 3282, name: "Автосервис"},
-    {id: 3283, name: "Услуги для автовладельцев"},
-    {id: 3284, name: "Велосипеды"},
-    {id: 3285, name: "Мотоциклы и другая мототехника"},
-    {id: 3286, name: "Водный транспорт"},
-    {id: 3287, name: "Автопроизводитель"},
-    {id: 3288, name: "Автомойка"},
-    {id: 3117, name: "Автошкола"},
-    {id: 3118, name: "Детский сад"},
-    {id: 3119, name: "Гимназия"},
-    {id: 3120, name: "Колледж"},
-    {id: 3121, name: "Лицей"},
-    {id: 3122, name: "Техникум"},
-    {id: 3123, name: "Университет"},
-    {id: 3124, name: "Школа"},
-    {id: 3125, name: "Институт"},
-    {id: 3126, name: "Обучающие курсы"},
-    {id: 3276, name: "Дополнительное образование"},
-    {id: 3275, name: "Тренинг, семинар"},
-    {id: 3127, name: "Танцевальная школа"}
-  ];
-
 class UserRequest extends Component {
 
   constructor(props) {
@@ -47,6 +21,9 @@ class UserRequest extends Component {
     autoBind(this);
     this.state = {
       activePanel: "requestView",
+      remark: "",
+      creatorId: "",
+      location: -1
     }
   }
 
@@ -56,11 +33,23 @@ class UserRequest extends Component {
   }
 
   showCongrats() {
-    this.setState( { activePanel: "thanks"})
+    console.log(this.state.location);
+    console.log(this.state.remark);
+    // this.setState( { activePanel: "thanks"})
   }
 
   componentWillMount() {
     this.props.dispatch(requestActions.fetchJobs())
+  }
+
+  changeRemark(e) {
+    this.setState({remark: e.target.value});
+  }
+
+  changeLocation(e) {
+    console.log("changeLoc");
+    console.log(e.target.value);
+    this.setState({location: e.target.value});
   }
 
   render() {
@@ -69,8 +58,8 @@ class UserRequest extends Component {
         <Panel id="requestView">
           <PanelHeader>Заявка</PanelHeader>
           <FormLayout>
-            <Textarea top="Описание" placeholder="Оставтье описание заявки" />
-            <Select top="Номер зала" placeholder="Выберите номер зала">
+            <Textarea top="Описание" placeholder="Оставтье описание заявки" onChange={this.changeRemark}/>
+            <Select top="Номер зала" placeholder="Выберите номер зала" onChange={this.changeLocation}>
               {this.props.typeJobs.map(job => <option value={job.id}>{job.name}</option>)}
             </Select>
             <File top="Загрузите фото" before={<Icon24Camera />} size="l">
