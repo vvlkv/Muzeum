@@ -63,7 +63,7 @@ class IbiApi {
   }
 
   async createRequest(dataR) {
-    const url = `${IBISOLUTIONS_ENDPOINT}/restapi/***`;
+    const url = `${IBISOLUTIONS_ENDPOINT}/restapi/api_create_request.php`;
     console.log("postTmpRequest");
     const response = await fetch(url, {
       method: 'POST',
@@ -78,7 +78,22 @@ class IbiApi {
   }
 
   async getTypeJobs() {
-    const url = `${IBISOLUTIONS_ENDPOINT}/restapi/***`;
+    const url = `${IBISOLUTIONS_ENDPOINT}/restapi/api_get_job_types.php`;
+    const response = await fetch(url, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json'
+      }
+    });
+    if (!response.ok) {
+      throw new Error(`Worldclock getTime failed, HTTP status ${response.status}`)
+    }
+    const data = await response.json();
+    return data;
+  }
+
+  async getCategoryOfUsers() {
+    const url = `${IBISOLUTIONS_ENDPOINT}/restapi/api_get_user_categories.php`;
     const response = await fetch(url, {
       method: 'GET',
       headers: {
@@ -93,7 +108,7 @@ class IbiApi {
   }
 
   async getCategoryOfJobs() {
-    const url = `${IBISOLUTIONS_ENDPOINT}/restapi/***`;
+    const url = `${IBISOLUTIONS_ENDPOINT}/restapi/api_get_request_categories.php`;
     const response = await fetch(url, {
       method: 'GET',
       headers: {
@@ -146,6 +161,21 @@ class IbiApi {
     });
     if (!response.ok) {
       console.log("postTmpRequest non ok");
+      throw new Error(`Worldclock getTime failed, HTTP status ${response.status}`)
+    }
+    const data = await response.json();
+    return data;
+  }
+
+  async getTimeTables() {
+    const url = `${IBISOLUTIONS_ENDPOINT}/restapi/api_get_timetables.php`;
+    const response = await fetch(url, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json'
+      }
+    });
+    if (!response.ok) {
       throw new Error(`Worldclock getTime failed, HTTP status ${response.status}`)
     }
     const data = await response.json();

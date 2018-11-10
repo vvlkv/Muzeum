@@ -23,11 +23,11 @@ export function fetchTimeTables() {
   }
 }
 
-export function fetchCategoryOfJobs() {
+export function fetchCategoryOfUser() {
   return async(dispatch, getState) => {
     try {
-      const categoryJobs = await ibiApiService.getCategoryOfJobs();
-      dispatch({type: types.CATEGORY_OF_JOBS_FETCHED, categoryJobs});
+      const categoryUsers = await ibiApiService.getCategoryOfUsers();
+      dispatch({type: types.CATEGORY_OF_USER_FETCHED, categoryUsers});
     } catch (e) {
       console.error(e);
     }

@@ -4,7 +4,7 @@ import _ from 'lodash';
 
 const initialState = Immutable({
   posts: [], //{}?????????????????????????
-  jobCategories: [],
+  usersCategories: [],
   locations: [],
   timeTables: [],
   response: {}
@@ -20,9 +20,9 @@ export default function reduce(state = initialState, action = {}) {
       return state.merge({
         timeTables: action.timeTables
       });
-    case types.CATEGORY_OF_JOBS_FETCHED:
+    case types.CATEGORY_OF_USER_FETCHED:
       return state.merge({
-        jobCategories: action.categoryJobs
+        usersCategories: action.categoryUsers
       });
     case types.CREATE_EMPLOYEE:
     console.log(action.resp);
@@ -55,9 +55,9 @@ export function getTimeTables(state) {
   return _.get(state.employee.timeTables, 'records');
 }
 
-export function getCategoryOfJobs(state) {
-  console.log(state.employee.jobCategories);
-  return state.employee.jobCategories;
+export function getCategoryOfUser(state) {
+  console.log(_.get(state.employee.usersCategories, 'records'));
+  return _.get(state.employee.usersCategories, 'records');
 }
 
 export function getLocations(state) {
