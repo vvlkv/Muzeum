@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
 import * as UI from '@vkontakte/vkui';
 import {connect} from 'react-redux';
-import Icon24Back from '@vkontakte/icons/dist/24/back';
-import Icon24Search from '@vkontakte/icons/dist/24/search';
 import WorkersItem from './WorkersItem'
 import RequestsItem from './RequestsItem'
 import AdvsScreen from '../workers/AdvsScreen'

@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import axios from 'axios';
 
 const IBISOLUTIONS_ENDPOINT = 'https://vkapi.ibisolutions.ru/';
@@ -21,8 +20,6 @@ class IbiApi {
   }
 
   async postTmpRequest(location, remark, creatorId, photo) {
-    // const url = `${IBISOLUTIONS_ENDPOINT}restapi/api_create_tmp_request.php`;
-    const url = 'http://vkapi.ibisolutions.ru/restapi/api_create_tmp_request.php';
     console.log("postTmpRequest");
     console.log("postTmpRequest2");
     console.log(location);
@@ -32,7 +29,6 @@ class IbiApi {
     console.log(photo.name);
     var formData = new FormData();
     formData.append('file', photo, photo.name)
-    // var blob = new Blob(photo, {type: "image/png"});
     axios.post("https://vkapi.ibisolutions.ru/restapi/api_create_tmp_request.php", {
       method: 'post',
       headers: {
