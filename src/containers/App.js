@@ -46,9 +46,7 @@ class App extends React.Component {
 }
 
 function mapStateToProps(state) {
-    return {
-
-    };
+    return {};
 }
 
 export default connect(mapStateToProps)(App);

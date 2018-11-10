@@ -47,7 +47,7 @@ class EpicScreen extends Component {
 
 function mapStateToProps(state) {
   return {
-
+    
   };
 }
 

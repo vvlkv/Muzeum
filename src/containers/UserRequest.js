@@ -16,7 +16,6 @@ const osname = platform();
 class UserRequest extends Component {
 
   constructor(props) {
-    console.log("USER_REQUEST");
     super(props);
     autoBind(this);
     this.state = {
@@ -32,19 +31,19 @@ class UserRequest extends Component {
     this.setState( { activePanel: "requestView"})
   }
 
-  postRequest() {
-
-    this.props.dispatch(requestActions.postRequest())
-  }
-
   showCongrats() {
     console.log(this.state.location);
     console.log(this.state.remark);
+
     // this.setState( { activePanel: "thanks"})
   }
 
   componentWillMount() {
-    this.props.dispatch(requestActions.fetchJobs())
+    // this.props.dispatch(requestActions.fetchJobs())
+  }
+
+  componentDidMount() {
+    if (!this.props.typeJobs) return this.preRender();
   }
 
   changeRemark(e) {
@@ -55,6 +54,15 @@ class UserRequest extends Component {
     console.log("changeLoc");
     console.log(e.target.value);
     this.setState({location: e.target.value});
+  }
+
+  preRender() {
+    return (
+      <View id="aa" activePanel="wait">
+        <Panel id="wait">
+        </Panel>
+      </View>
+    )
   }
 
   render() {
@@ -71,7 +79,7 @@ class UserRequest extends Component {
               Открыть галерею
             </File>
              <Div>
-               <Button size="xl" level="secondary" onClick={this.postRequest.bind(this)}>Оставить заявку</Button>
+               <Button size="xl" level="secondary" onClick={this.showCongrats.bind(this)}>Оставить заявку</Button>
              </Div>
           </FormLayout>
         </Panel>
@@ -91,7 +99,6 @@ class UserRequest extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log(state);
   return {
     typeJobs: requestSelectors.getJobTypes(state)
   };
