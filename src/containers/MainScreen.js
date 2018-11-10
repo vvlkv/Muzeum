@@ -3,17 +3,16 @@ import { Panel, Button, Group, Div, PanelHeader, Epic, Tabbar, TabbarItem, View,
 import {connect} from 'react-redux';
 import {push} from 'react-router-redux';
 import UserRequest from './UserRequest'
-import EpicScreen from './EpicScreen'
+import WorkerEpic from './WorkerEpic'
+import DispetcherEpic from './DispetcherEpic'
 
 class MainScreen extends Component {
 
   constructor(props) {
     super(props);
-    console.log(props);
     this.state = {
 			activePanel: 'mainscreen',
 		}
-    console.log(this.state.activePanel);
   }
   render() {
     return (
@@ -24,43 +23,31 @@ class MainScreen extends Component {
             <Button size="xl" level="2" onClick={this.showRequest.bind(this)}>
               Посетитель
             </Button>
-            <Button size="xl" level="2" onClick={this.showEpic.bind(this)}>
+            <Button size="xl" level="2" onClick={this.showWorkerEpic.bind(this)}>
               Работник
             </Button>
-            <Button size="xl" level="2" onClick={this.showEpic.bind(this)}>
+            <Button size="xl" level="2" onClick={this.showDispetcherEpic.bind(this)}>
               Диспетчер
             </Button>
           </Panel>
         </View>
-        <UserRequest id='request' state={this.state.activePanel}/>
-        <EpicScreen id='epic'/>
+        <UserRequest id='request'/>
+        <WorkerEpic id='workerepic'/>
+        <DispetcherEpic id='dispetcherepic'/>
       </Root>
     );
   }
 
   showRequest() {
-    console.log("SHOWWW");
-    this.setState(
-      {
-        activePanel:'request'
-      }
-    )
+    this.setState({activePanel:'request'})
   }
 
-  showEpic() {
-    console.log("EPIC");
-    this.setState(
-      {
-        activePanel:'epic'
-      }
-    )
+  showWorkerEpic() {
+    this.setState({activePanel:'workerepic'})
   }
 
-  openUserRequest() {
-  }
-
-  getActualTime() {
-    console.log("getActualTime");
+  showDispetcherEpic() {
+    this.setState({activePanel:'dispetcherepic'})
   }
 }
 
