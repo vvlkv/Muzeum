@@ -34,7 +34,7 @@ export function UploadPhoto(file) {
         console.error(e);
       }
     }
-
+/*
     dataR =  { 'file': file
      };
      strData = JSON.stringify(dataR);
@@ -47,7 +47,7 @@ export function UploadPhoto(file) {
       } catch (e) {
         console.error(e);
       }
-    }
+    }*/
 
   }
 }
