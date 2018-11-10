@@ -32,7 +32,7 @@ class WorkersItem extends Component {
       <UI.View id="workers" activePanel="workers">
         <UI.Panel id='workers'>
           <UI.PanelHeader
-            left={<UI.HeaderButton><Icon24Back/></UI.HeaderButton>}
+            left={<UI.HeaderButton><Icon24Back/></UI.HeaderButton>}/>
         </UI.Panel>
       </UI.View>
     );
