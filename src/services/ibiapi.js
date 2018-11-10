@@ -355,7 +355,8 @@ class IbiApi {
         headers:{
           Accept: 'application/json',
           'Access-Control-Allow-Origin': '*',
-          'Access-Control-Allow-Methods': '*'
+          'Access-Control-Allow-Methods': 'GET, HEAD, POST',
+          'Access-Control-Max-Age': '3000'
         },
         body: dataR
       });
