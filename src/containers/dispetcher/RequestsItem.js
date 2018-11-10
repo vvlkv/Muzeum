@@ -15,8 +15,8 @@ class RequestsItem extends Component {
     super(props);
     autoBind(this);
     this.state = {
-      activeView: "main",
-			activePanel: "workers"
+			activePanel: "requests",
+      activeTempRequest: null
 		}
   }
 
@@ -40,6 +40,15 @@ class RequestsItem extends Component {
     console.log(e);
   }
 
+  showTempRequest(request) {
+    console.log(request);
+    this.setState({
+      activePanel: "showtemprequest",
+      activeTempRequest: request
+    });
+    this.forceUpdate();
+  }
+
   preRender() {
     return (
       <UI.View id="spinner" activePanel="spinner">
@@ -57,7 +66,7 @@ class RequestsItem extends Component {
     if (!this.props.tempRequests) return this.preRender();
     return (
       <UI.Root activeView="requests">
-        <UI.View id="requests" activePanel="requests">
+        <UI.View id="requests" activePanel={this.state.activePanel}>
           <UI.Panel id='requests'>
             <UI.PanelHeader noShadow>Заявки</UI.PanelHeader>
               <UI.FixedLayout vertical="top">
@@ -84,8 +93,17 @@ class RequestsItem extends Component {
                 </UI.Tabs>
               </UI.FixedLayout>
               <UI.List style={{ marginTop: 60 }}>
-                {this.props.tempRequests.map(request => <UI.Cell expandable description={request.remark}>{request.remark}</UI.Cell>)}
+                {this.props.tempRequests.map(request => <UI.Cell expandable description={request.remark} onClick={this.showTempRequest.bind(this, request)}>{request.remark}</UI.Cell>)}
               </UI.List>
+          </UI.Panel>
+          <UI.Panel id="showtemprequest">
+            <UI.PanelHeader>Заявка</UI.PanelHeader>
+            <UI.FormLayout>
+              <UI.Input top="ID гостя" value={this.state.activeTempRequest == null ? "" : this.state.activeTempRequest.id}/>
+              <UI.Input top="Описание заявки" value={this.state.activeTempRequest == null ? "" : this.state.activeTempRequest.remark}/>
+              <UI.Input top="Дата создания" value={this.state.activeTempRequest == null ? "" : this.state.activeTempRequest.create_date}/>
+              <UI.Input top="Помещение" value={this.state.activeTempRequest == null ? "" : this.state.activeTempRequest.location}/>
+            </UI.FormLayout>
           </UI.Panel>
         </UI.View>
       </UI.Root>
