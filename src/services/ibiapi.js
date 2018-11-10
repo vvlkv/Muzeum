@@ -347,7 +347,7 @@ class IbiApi {
     }
 
     async loginPhoto(dataR) {
-      const url = `http://api.imageshack.com/v2/user/login`;
+      const url = `https://api.imageshack.com/v2/user/login`;
       console.log("loginPhoto");
       const response = await fetch(url, {
         method: 'POST',
