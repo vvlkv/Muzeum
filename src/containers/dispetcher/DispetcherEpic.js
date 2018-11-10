@@ -9,6 +9,7 @@ import RequestsItem from './RequestsItem'
 import Icon24Note from '@vkontakte/icons/dist/24/note';
 import Icon24Users from '@vkontakte/icons/dist/24/users';
 import Icon24Place from '@vkontakte/icons/dist/24/place';
+import Icon24Notification from '@vkontakte/icons/dist/24/notification';
 
 
 class DispetcherEpic extends Component {
@@ -43,6 +44,11 @@ class DispetcherEpic extends Component {
             selected={this.state.activeStory === 'discover'}
             data-story="discover"
           ><Icon24Place/></UI.TabbarItem>
+          <UI.TabbarItem
+            onClick={this.onStoryChange}
+            selected={this.state.activeStory === 'advs'}
+            data-story="advs"
+          ><Icon24Notification/></UI.TabbarItem>
         </UI.Tabbar>
       }>
       <WorkersItem id="workers"/>

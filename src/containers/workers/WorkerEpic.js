@@ -9,6 +9,7 @@ import Icon28ChevronNote from '@vkontakte/icons/dist/24/note';
 import Icon24Note from '@vkontakte/icons/dist/24/note';
 import Icon28ChevronPlace from '@vkontakte/icons/dist/24/place';
 import Icon24Place from '@vkontakte/icons/dist/24/place';
+import Icon24Notification from '@vkontakte/icons/dist/24/notification';
 
 const osname = platform();
 
@@ -35,9 +36,9 @@ class WorkerEpic extends Component {
           >{osname === IOS ? <Icon28ChevronNote/> : <Icon24Note/>}</TabbarItem>
           <TabbarItem
             onClick={this.onStoryChange}
-            selected={this.state.activeStory === 'map'}
-            data-story="map"
-          >{osname === IOS ? <Icon28ChevronPlace/> : <Icon24Place/>}</TabbarItem>
+            selected={this.state.activeStory === 'advs'}
+            data-story="advs"
+          >{osname === IOS ? <Icon24Notification/> : <Icon24Notification/>}</TabbarItem>
         </Tabbar>
       }>
       <RequestsScreen id="requests" activePanel="requests"/>
