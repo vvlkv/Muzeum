@@ -352,9 +352,9 @@ class IbiApi {
 
       const response = await fetch(url, {
         headers: {
-        'Content-Type': 'application/json',
           Accept: 'application/json'
         },
+        'Content-Type': 'application/json',
         method: 'POST',
         mode: 'no-cors',
         body: 'user=AlexeyBoooooB&password=4815162342&auth_token=494d73adf4848e30ab21c71bfd3742f0&set_cookies=TRUE&remember_me=TRUE'
