@@ -4,7 +4,9 @@ import {connect} from 'react-redux';
 import autoBind from 'react-autobind';
 import {push} from 'react-router-redux';
 import Icon24Back from '@vkontakte/icons/dist/24/back';
+import Icon28ChevronBack from '@vkontakte/icons/dist/28/chevron_back';
 import Icon24Search from '@vkontakte/icons/dist/24/search';
+import Icon24Cancel from '@vkontakte/icons/dist/24/search';
 import _ from 'lodash';
 
 
@@ -12,6 +14,7 @@ import * as employeeActions from '../../store/createEmployee/actions'
 import * as employeeSelectors from '../../store/createEmployee/reducer'
 import * as requestSelectors from '../../store/userRequest/reducer'
 
+const osname = UI.platform();
 class WorkersItem extends Component {
 
   constructor(props) {
@@ -20,6 +23,7 @@ class WorkersItem extends Component {
     this.state = {
       activeView: "main",
 			activePanel: "workers",
+      popout: null,
       workerID: -1,
       post: -1,
       timeTable:-1,
@@ -65,7 +69,8 @@ class WorkersItem extends Component {
   }
 
   registerNewEmployee() {
-    this.props.dispatch(employeeActions.createEmployee("Иван", "Иванов", this.state.area, "1995-20-10", this.state.workerID, this.state.timeTable, "WRK", this.state.password, this.state.post, "89213877640", this.state.workPhone, "vvlkv@icloud.com"))
+    this.props.dispatch(employeeActions.createEmployee("Виктор", "Волков", this.state.area, "1995-20-10", this.state.workerID, this.state.timeTable, "WRK", this.state.password, this.state.post, "89213877640", this.state.workPhone, "vvlkv@icloud.com"))
+    this.openSheet.bind(this);
   }
 
   preRender() {
@@ -78,6 +83,23 @@ class WorkersItem extends Component {
         </UI.Panel>
       </UI.View>
     )
+  }
+
+  openSheet () {
+    console.log("openSheet");
+    this.setState({ popout:
+      <UI.Alert
+        actions={[
+        {
+          title: 'ОК',
+          autoclose: true,
+          style: 'cancel'
+        }]}
+        onClose={ () => this.setState({ popout: null, activePanel:"workers" }) }
+      >
+        <h2>Сотрудник добавлен!</h2>
+      </UI.Alert>
+    });
   }
 
   getPostName(idPost) {
@@ -96,7 +118,7 @@ class WorkersItem extends Component {
     console.log(_.findIndex(this.props.posts, { 'id': 1 }));
     return (
       <UI.Root activeView={this.state.activeView}>
-        <UI.View id="main" activePanel={this.state.activePanel}>
+        <UI.View popout={this.state.popout} id="main" activePanel={this.state.activePanel}>
           <UI.Panel id='workers'>
             <UI.PanelHeader
               left={<UI.HeaderButton onClick={() => this.setState({ activePanel: "addworker"})}>Добавить</UI.HeaderButton>}>
@@ -108,11 +130,8 @@ class WorkersItem extends Component {
               </UI.List>
             </UI.Group>
           </UI.Panel>
-          <UI.Panel id="aboutemployee">
-            <UI.PanelHeader>Про сотрудника</UI.PanelHeader>
-          </UI.Panel>
           <UI.Panel id="addworker">
-            <UI.PanelHeader>Добавить</UI.PanelHeader>
+            <UI.PanelHeader left={<UI.HeaderButton onClick={() => this.setState({ activePanel: "workers"})}>{osname === UI.IOS ? <Icon28ChevronBack/> : <Icon24Back/>}</UI.HeaderButton>}>Добавить</UI.PanelHeader>
             <UI.FormLayout>
               <UI.Input
                 type="ID"
@@ -128,8 +147,7 @@ class WorkersItem extends Component {
               <UI.Select top="Место работы" placeholder="" onChange={this.changeArea}>
                 {this.props.locations.map(location => <option value={location.id}>{location.name}</option>)}
               </UI.Select>
-              <UI.Input
-                type="workphone"
+              <UI.Input type="text"
                 top="Рабочий телефон"
                 onChange={this.changeWorkphone}/>
               <UI.Input
@@ -138,6 +156,9 @@ class WorkersItem extends Component {
                 onChange={this.changeID}/>
             </UI.FormLayout>
             <UI.Button size="xl" level="secondary" onClick={this.registerNewEmployee.bind(this)}>Зарегистрировать</UI.Button>
+          </UI.Panel>
+          <UI.Panel id="aboutemployee">
+            <UI.PanelHeader>Про сотрудника</UI.PanelHeader>
           </UI.Panel>
         </UI.View>
       </UI.Root>
