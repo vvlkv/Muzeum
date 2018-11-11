@@ -71,31 +71,25 @@ class UserRequest extends Component {
   }
 
   openSheet () {
-    console.log("openSheet");
     console.log(this.state.selectedFile.name);
+    // this.props.dispatch(requestActions.postRequest(this.state.location, this.state.remark, this.state.creatorId, this.state.selectedFile));
 
-    this.props.dispatch(requestActions.postRequest(this.state.location, this.state.remark, this.state.creatorId, this.state.selectedFile));
-
-    // this.setState({ popout:
-    //   <Alert
-    //     actions={[{
-    //       title: 'Закрыть',
-    //       autoclose: true,
-    //       style: 'destructive'
-    //     }, {
-    //       title: 'Ок',
-    //       autoclose: true,
-    //       style: 'cancel'
-    //     }]}
-    //     onClose={ () => {
-    //       this.changeRemark({target: {value: ""}});
-    //       this.setState({remark: ""});
-    //       this.setState({popout: null }) }}
-    //   >
-    //     <h2>Заявка отправлена</h2>
-    //     <p>Спасибо за участие!</p>
-    //   </Alert>
-    // });
+    this.setState({ popout:
+      <Alert
+        actions={[{
+          title: 'Ок',
+          autoclose: true,
+          style: 'cancel'
+        }]}
+        onClose={ () => {
+          this.changeRemark({target: {value: ""}});
+          this.setState({remark: ""});
+          this.setState({popout: null }) }}
+      >
+        <h2>Заявка отправлена</h2>
+        <p>Спасибо за обращение!</p>
+      </Alert>
+    });
   }
 
   render() {
