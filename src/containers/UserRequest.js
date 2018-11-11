@@ -63,7 +63,6 @@ class UserRequest extends Component {
     console.log("uploadPhoto");
     console.log(e.target.type);
     console.log(e.target.files[0].name);
-    this.setState(this.state.selectedFile: e.target.files[0]})
     const data = new FormData();
     data.append('file', this.state.selectedFile, this.state.selectedFile.name)
     // this.props.dispatch(requestActions.UploadPhoto(data));
