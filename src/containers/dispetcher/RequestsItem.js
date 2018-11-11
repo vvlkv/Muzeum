@@ -90,30 +90,7 @@ class RequestsItem extends Component {
         <UI.View id="requests" activePanel={this.state.activePanel}>
           <UI.Panel id='requests'>
             <UI.PanelHeader noShadow>Заявки</UI.PanelHeader>
-              <UI.FixedLayout vertical="top">
-                <UI.Tabs noShadow theme="header" type="buttons">
-                  <UI.HorizontalScroll>
-                    <UI.TabsItem
-                      onClick={() => this.setState({ activeTab6: 'all' })}
-                      selected={this.state.activeTab6 === 'all'}
-                    >
-                      На рассмотрении
-                    </UI.TabsItem>
-                    <UI.TabsItem
-                      onClick={() => this.setState({ activeTab6: 'users' })}
-                      selected={this.state.activeTab6 === 'users'}
-                    >
-                      Активные
-                    </UI.TabsItem>
-                    <UI.TabsItem
-                      onClick={() => this.setState({ activeTab6: 'groups' })}
-                      selected={this.state.activeTab6 === 'groups'}>
-                      История
-                    </UI.TabsItem>
-                  </UI.HorizontalScroll>
-                </UI.Tabs>
-              </UI.FixedLayout>
-              <UI.List style={{ marginTop: 60 }}>
+              <UI.List>
                 {this.props.tempRequests.map(request => <UI.Cell expandable description={request.remark} onClick={this.showTempRequest.bind(this, request, this.props.categoryJobs)}>{request.remark}</UI.Cell>)}
               </UI.List>
           </UI.Panel>
