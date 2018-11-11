@@ -62,15 +62,15 @@ class UserRequest extends Component {
   uploadPhoto(e) {
     console.log("uploadPhoto");
     console.log(e.target.type);
-    console.log(e.target.files[0].name);
-    const data = new FormData();
-    data.append('file', this.state.selectedFile, this.state.selectedFile.name)
+    // console.log(e.target.files[0].name);
+    // const data = new FormData();
+    // data.append('file', this.state.selectedFile, this.state.selectedFile.name)
     // this.props.dispatch(requestActions.UploadPhoto(data));
   }
 
   openSheet () {
     console.log(this.state.selectedFile.name);
-    this.props.dispatch(requestActions.postRequest(this.state.location, this.state.remark, this.state.creatorId, this.state.selectedFile));
+    this.props.dispatch(requestActions.postRequest(this.state.location, this.state.remark, this.state.creatorId, ""));
 
     this.setState({ popout:
       <Alert
