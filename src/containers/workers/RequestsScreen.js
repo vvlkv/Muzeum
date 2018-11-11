@@ -92,7 +92,7 @@ class RequestsScreen extends Component {
             <UI.Panel id='requests'>
               <UI.PanelHeader noShadow>Заявки</UI.PanelHeader>
                 <UI.List>
-                  {this.props.tempRequests.map(request => <UI.Cell expandable description={request.remark} onClick={this.showTempRequest.bind(this, request, this.props.categoryJobs)}>{request.remark}</UI.Cell>)}
+                  {this.props.tempRequests.map(request => <UI.Cell expandable description={request.job_type} onClick={this.showTempRequest.bind(this, request, this.props.categoryJobs)}>{request.remark}</UI.Cell>)}
                 </UI.List>
             </UI.Panel>
             <UI.Panel id="showtemprequest">
