@@ -3,6 +3,12 @@ import * as UI from '@vkontakte/vkui';
 import {connect} from 'react-redux';
 import {push} from 'react-router-redux';
 
+
+import * as requestActions from '../../store/createRequest/actions'
+import * as requestSelectors from '../../store/createRequest/reducer'
+import * as userActions from '../../store/userRequest/actions'
+import * as userSelectors from '../../store/userRequest/reducer'
+
 class RequestsScreen extends Component {
 
   constructor(props) {
@@ -11,35 +17,94 @@ class RequestsScreen extends Component {
 			activePanel: 'requests',
 		}
   }
+
+  changeID(e) {
+    this.setState({workerID: e.target.value});
+  }
+
+  changePost(e) {
+    this.setState({post: e.target.value});
+  }
+
+  changeCategory(e) {
+    this.setState({categoryJob: e.target.value});
+  }
+
+  changeJobType(e) {
+    this.setState({jobType: e.target.value});
+  }
+
+  showTempRequest(request, categoryJobss) {
+    this.setState({
+      categoryJob:"",
+      activePanel: "showtemprequest",
+      activeTempRequest: request
+    });
+    this.forceUpdate();
+  }
+
+  acceptRequest() {
+    this.props.dispatch(requestActions.moderateRequest(this.state.activeTempRequest.id, this.state.activeTempRequest.remark, this.state.activeTempRequest.creator_vk_id, "305", this.state.jobType, this.state.categoryJob, ""))
+  }
+
+  declineRequest() {
+    console.log("declineRequest");
+    console.log(this.state.activeTempRequest.id);
+    this.props.dispatch(requestActions.deleteRequest(this.state.activeTempRequest.id))
+  }
+
+  componentWillMount() {
+    this.props.dispatch(requestActions.fetchTmpRequests());
+    this.props.dispatch(requestActions.fetchCategoryOfJobs());
+    this.props.dispatch(requestActions.fetchTypeJobs());
+    this.props.dispatch(userActions.fetchLocations());
+  }
+
+  preRender() {
+    console.log(this.props.locations);
+    return (
+      <UI.View id="spinner" activePanel="spinner">
+        <UI.Panel id="spinner">
+          <UI.PanelHeader>Spinner</UI.PanelHeader>
+          <div style={{ height: 100 }}>
+            <UI.Spinner />
+          </div>
+        </UI.Panel>
+      </UI.View>
+    );
+  }
+
   render() {
+    console.log("render");
+    console.log(this.state.activeTempRequest);
+    if (!this.props.tempRequests || !this.props.jobType || !this.props.locations || !this.props.jobPriority) return this.preRender();
     return (
         <UI.View id="requests" activePanel="requests">
           <UI.Panel id='requests'>
             <UI.PanelHeader noShadow>Заявки</UI.PanelHeader>
-              <UI.FixedLayout vertical="top">
-                <UI.Tabs theme="header" type="buttons">
-                  <UI.HorizontalScroll>
-                    <UI.TabsItem
-                      onClick={() => this.setState({ activeTab6: 'all' })}
-                      selected={this.state.activeTab6 === 'all'}
-                    >
-                      Активные
-                    </UI.TabsItem>
-                    <UI.TabsItem
-                      onClick={() => this.setState({ activeTab6: 'users' })}
-                      selected={this.state.activeTab6 === 'users'}
-                    >
-                      Доступные
-                    </UI.TabsItem>
-                    <UI.TabsItem
-                      onClick={() => this.setState({ activeTab6: 'groups' })}
-                      selected={this.state.activeTab6 === 'groups'}
-                    >
-                      История
-                    </UI.TabsItem>
-                  </UI.HorizontalScroll>
-                </UI.Tabs>
-              </UI.FixedLayout>
+              <UI.List style={{ marginTop: 60 }}>
+                {this.props.tempRequests.map(request => <UI.Cell expandable description={request.remark} onClick={this.showTempRequest.bind(this, request, this.props.categoryJobs)}>{request.remark}</UI.Cell>)}
+              </UI.List>
+          </UI.Panel>
+          <UI.Panel id="showtemprequest">
+            <UI.PanelHeader>Заявка</UI.PanelHeader>
+            <UI.FormLayout>
+              <UI.Input top="ID гостя" value={this.state.activeTempRequest == null ? "" : this.state.activeTempRequest.creator_vk_id}/>
+              <UI.Input top="Описание заявки" value={this.state.activeTempRequest == null ? "" : this.state.activeTempRequest.remark}/>
+              <UI.Select top="Номер зала" value={this.state.activeTempRequest == null ? "" : this.state.activeTempRequest.location}>
+                {this.props.locations.map(location => <option value={location.id}> {location.id} - {location.name} </option>)}
+              </UI.Select>
+              <UI.Select top="Категория работ" placeholder="Выберите категорию работ" onChange={this.changeCategory}>
+                {this.props.jobType.map(category => <option value={category.id}> {category.name} </option>)}
+              </UI.Select>
+              <UI.Select top="Срочность исполнения" placeholder="Установите приоритет" onChange={this.changeJobType}>
+                {this.props.jobPriority.map(category => <option value={category.id}> {category.name} </option>)}
+              </UI.Select>
+              <UI.Div style={{display: 'flex'}}>
+                <UI.Button size="l" stretched style={{ marginRight: 8 }} onClick={this.acceptRequest}>Подтвердить</UI.Button>
+                <UI.Button size="l" stretched onClick={this.declineRequest}>Отклонить</UI.Button>
+              </UI.Div>
+            </UI.FormLayout>
           </UI.Panel>
         </UI.View>
     );
@@ -60,6 +125,10 @@ class RequestsScreen extends Component {
 
 function mapStateToProps(state) {
   return {
+      tempRequests: requestSelectors.getTmpRequests(state),
+      jobType: requestSelectors.getTypeJobs(state),
+      jobPriority: requestSelectors.getCategoryOfJobs(state),
+      locations: userSelectors.getLocations(state)
   };
 }
 

@@ -123,7 +123,7 @@ class WorkersItem extends Component {
         <UI.View popout={this.state.popout} id="main" activePanel={this.state.activePanel}>
           <UI.Panel id='workers'>
             <UI.PanelHeader
-              left={<UI.HeaderButton onClick={() => this.setState({ activePanel: "addworker"})}>Добавить</UI.HeaderButton>}>
+              left={<UI.HeaderButton onClick={() => this.setState({ activePanel: "addworker"})}> <Icon24Plus/> </UI.HeaderButton>}>
               Сотрудники
             </UI.PanelHeader>
             <UI.Group>
