@@ -82,6 +82,7 @@ class RequestsItem extends Component {
   }
 
   render() {
+    console.log("render");
     console.log(this.state.activeTempRequest);
     if (!this.props.tempRequests || !this.props.jobType || !this.props.locations || !this.props.jobPriority) return this.preRender();
     return (

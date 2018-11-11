@@ -2,6 +2,8 @@ import * as types from './actionTypes';
 import ibiApiService from '../../services/ibiapi';
 
 export function fetchTmpRequests() {
+
+    console.log("fetchTmpRequests");
   return async(dispatch, getState) => {
     try {
       const tmpRequests = await ibiApiService.getTmpRequests();

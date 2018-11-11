@@ -61,7 +61,7 @@ class IbiApi {
   }
 
   async getTmpRequests() {
-    const url = `${IBISOLUTIONS_ENDPOINT}/restapi/api_get_all_tmp_requests.php`;
+    const url = `${IBISOLUTIONS_ENDPOINT}/restapi/api_get_all_req_free.php`;
     const response = await fetch(url, {
       method: 'GET',
       headers: {
