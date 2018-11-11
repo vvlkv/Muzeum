@@ -55,8 +55,7 @@ class DispetcherEpic extends Component {
       <RequestsItem id="requests"/>
       <UI.View id="discover" activePanel={this.state.activePanel}>
         <UI.Panel id="discover">
-          <UI.PanelHeader>Discover</UI.PanelHeader>
-          <UI.Button onClick={() => this.setState({activePanel: 'test'})}>Next</UI.Button>
+          <UI.PanelHeader>Карта</UI.PanelHeader>
         </UI.Panel>
         <UI.Panel id="test">
           <UI.PanelHeader>cxvxcv</UI.PanelHeader>

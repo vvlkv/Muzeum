@@ -9,6 +9,9 @@ import {rootReducer} from './store/reducers';
 import registerServiceWorker from './sw';
 import { BrowserRouter as Router } from 'react-router-dom'
 import App from './containers/App';
+import connect from '@vkontakte/vkui-connect';
+
+connect.send('VKWebAppInit', {});
 
 const store = createStore(
   rootReducer,
