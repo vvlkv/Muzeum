@@ -69,7 +69,7 @@ class UserRequest extends Component {
   }
 
   openSheet () {
-    console.log(this.state.selectedFile.name);
+    //console.log(this.state.selectedFile.name);
     this.props.dispatch(requestActions.postRequest(this.state.location, this.state.remark, this.state.creatorId, ""));
 
     this.setState({ popout:
