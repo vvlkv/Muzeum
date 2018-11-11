@@ -110,8 +110,8 @@ class RequestsScreen extends Component {
                   {this.props.jobPriority.map(category => <option value={category.id}> {category.name} </option>)}
                 </UI.Select>
                 <UI.Div style={{display: 'flex'}}>
-                  <UI.Button size="l" stretched style={{ marginRight: 8 }} onClick={this.acceptRequest}>Подтвердить</UI.Button>
-                  <UI.Button size="l" stretched onClick={this.declineRequest}>Отклонить</UI.Button>
+                  <UI.Button size="l" stretched style={{ marginRight: 8 }} onClick={this.acceptRequest}>Выполнено</UI.Button>
+                  <UI.Button size="l" stretched onClick={this.declineRequest}>Нужна помощь</UI.Button>
                 </UI.Div>
               </UI.FormLayout>
             </UI.Panel>
