@@ -36,6 +36,7 @@ class MainScreen extends Component {
   }
   render() {
     if (!this.props.locations) return this.preRender();
+    			console.log(this.state.fetchedUser);
     return (
       <Root activeView={this.state.activePanel}>
         <View id="mainscreen" activePanel="mainscreen">
