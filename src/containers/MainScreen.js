@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Panel, Spinner, Button, PanelHeader, View, Root } from '@vkontakte/vkui';
+import { Panel, Spinner, Button, PanelHeader, View, Group, ListItem, Avatar, Root } from '@vkontakte/vkui';
 import {connect} from 'react-redux';
 import UserRequest from './UserRequest'
 import WorkerEpic from './workers/WorkerEpic'
@@ -41,7 +41,16 @@ class MainScreen extends Component {
       <Root activeView={this.state.activePanel}>
         <View id="mainscreen" activePanel="mainscreen">
           <Panel id='mainscreen'>
-            <PanelHeader > {this.state.fetchedUser.first_name} </PanelHeader>
+            <PanelHeader ></PanelHeader>
+            {this.props.fetchedUser &&
+        		<Group title="User Data Fetched with VK Connect">
+        			<ListItem
+        				before={<Avatar src={this.props.fetchedUser.photo_200}/>}
+        				description={this.props.fetchedUser.city.title}
+        			>
+        				{`${this.props.fetchedUser.first_name} ${this.props.fetchedUser.last_name}`}
+        			</ListItem>
+        		</Group>}
             <Button size="xl" level="2" onClick={this.showRequest.bind(this)}>
               Посетитель
             </Button>
