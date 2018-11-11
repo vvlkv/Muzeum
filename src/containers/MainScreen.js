@@ -41,7 +41,7 @@ class MainScreen extends Component {
       <Root activeView={this.state.activePanel}>
         <View id="mainscreen" activePanel="mainscreen">
           <Panel id='mainscreen'>
-            <PanelHeader ></PanelHeader>
+            <PanelHeader > {this.state.fetchedUser.first_name} </PanelHeader>
             <Button size="xl" level="2" onClick={this.showRequest.bind(this)}>
               Посетитель
             </Button>
