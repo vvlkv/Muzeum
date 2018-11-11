@@ -20,44 +20,51 @@ class IbiApi {
   }
 
   async postTmpRequest(location, remark, creatorId, photo) {
-    console.log("postTmpRequest");
-    console.log("postTmpRequest2");
-    console.log(location);
-    console.log(remark);
-    console.log(creatorId);
-    console.log(photo);
-    console.log(photo.name);
-    var formData = new FormData();
-    formData.append('file', photo, photo.name)
-    axios.post("https://vkapi.ibisolutions.ru/restapi/api_create_tmp_request.php", {
-      method: 'post',
-      headers: {
-      'Access-Control-Allow-Origin': '*',
-      'Content-Type': `multipart/form-data`,
-      },
-      data: {
-        remark: remark,
-        creator_vk_id: creatorId,
-        location: location,
-        photo_url: formData
-      }
-    }).then(function (response) {
-                console.log(response);
-              })
-              .catch(function (error) {
-                console.log(error);
-            });
+    const url = `${IBISOLUTIONS_ENDPOINT}/restapi/api_create_tmp_request.php`;
+    // console.log("postTmpRequest");
+    // console.log("postTmpRequest2");
+    // console.log(location);
+    // console.log(remark);
+    // console.log(creatorId);
+    // console.log(photo);
+    // console.log(photo.name);
+    // var formData = new FormData();
+    // formData.append('file', photo, photo.name)
+    // axios.post("https://vkapi.ibisolutions.ru/restapi/api_create_tmp_request.php", {
+    //   method: 'post',
+    //   headers: {
+    //   'Access-Control-Allow-Origin': '*',
+    //   'Content-Type': `multipart/form-data`,
+    //   },
+    //   data: {
+    //     remark: remark,
+    //     creator_vk_id: creatorId,
+    //     location: location,
+    //     photo_url: formData
+    //   }
+    // }).then(function (response) {
+    //             console.log(response);
+    //           })
+    //           .catch(function (error) {
+    //             console.log(error);
+    //         });
 
-    // const response = await fetch(url, {
-    //   method: 'POST',
-    //   body: JSON.stringify(dataR)
-    // });
-    // if (!response.ok) {
-    //   console.log("postTmpRequest non ok");
-    //   throw new Error(`Worldclock getTime failed, HTTP status ${response.status}`)
-    // }
-    // const data = await response.json();
-    // return data;
+    var dataR =  {
+      'remark': remark,
+      'creator_vk_id': creatorId,
+      'location': location,
+      'photo_url': ""
+     };
+    const response = await fetch(url, {
+      method: 'POST',
+      body: JSON.stringify(dataR)
+    });
+    if (!response.ok) {
+      console.log("postTmpRequest non ok");
+      throw new Error(`Worldclock getTime failed, HTTP status ${response.status}`)
+    }
+    const data = await response.json();
+    return data;
   }
 
   async getTmpRequests() {

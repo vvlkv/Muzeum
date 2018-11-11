@@ -56,6 +56,7 @@ export function UploadPhoto(file) {
 }
 
 export function postRequest(location, remark, creatorId, photo) {
+  console.log("postRequest");
   if(!remark) {
     remark = "Нет описания";
   }
