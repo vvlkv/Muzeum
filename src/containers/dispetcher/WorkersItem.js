@@ -109,13 +109,14 @@ class WorkersItem extends Component {
       console.log("ind");
       console.log(ind);
         console.log("ret");
+        if(ind>=0) {
       console.log(this.props.posts[ind].post);
       return this.props.posts[ind].post;
+    }
   }
 
   render() {
     if (!this.props.posts || !this.props.timeTables || !this.props.workers) return  this.preRender();
-    console.log(_.findIndex(this.props.posts, { 'id': 1 }));
     return (
       <UI.Root activeView={this.state.activeView}>
         <UI.View popout={this.state.popout} id="main" activePanel={this.state.activePanel}>
@@ -126,7 +127,7 @@ class WorkersItem extends Component {
             </UI.PanelHeader>
             <UI.Group>
               <UI.List>
-                {this.props.workers.map(employee => <div> <UI.Cell expandable description={this.getPostName.bind(this, employee.post)} onClick={this.showEmployee.bind(this, employee.name)}> {employee.name} {employee.lastname} </UI.Cell> </div>)}
+                {this.props.workers.map(employee => <div> <UI.Cell expandable description={ this.props.posts.post[2] } onClick={this.showEmployee.bind(this, employee)}> {employee.name} {employee.lastname} </UI.Cell> </div>)}
               </UI.List>
             </UI.Group>
           </UI.Panel>
