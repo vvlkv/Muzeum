@@ -1,9 +1,8 @@
 import React, {Component} from 'react';
-import { Panel, PanelHeader, InfoRow, Progress, Alert, View, FormLayout, Select, File, platform, Button, IOS, Textarea, Div, HeaderButton, Input } from '@vkontakte/vkui';
+import { Panel, PanelHeader, Progress, Alert, View, FormLayout, Select, File, platform, Button, IOS, Textarea, Div, HeaderButton, Input } from '@vkontakte/vkui';
 import {connect} from 'react-redux';
 import autoBind from 'react-autobind';
 
-import PropTypes from 'prop-types';
 import Icon28ChevronBack from '@vkontakte/icons/dist/28/chevron_back';
 import Icon24Back from '@vkontakte/icons/dist/24/back';
 import Icon24Camera from '@vkontakte/icons/dist/24/camera';
@@ -64,7 +63,7 @@ class UserRequest extends Component {
     console.log("uploadPhoto");
     console.log(e.target.type);
     console.log(e.target.files[0].name);
-    this.state.selectedFile = e.target.files[0];
+    this.setState(this.state.selectedFile: e.target.files[0]})
     const data = new FormData();
     data.append('file', this.state.selectedFile, this.state.selectedFile.name)
     // this.props.dispatch(requestActions.UploadPhoto(data));

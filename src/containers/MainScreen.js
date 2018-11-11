@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
-import { Panel, Spinner, Button, Group, Div, PanelHeader, Epic, Tabbar, TabbarItem, View, Input, Root } from '@vkontakte/vkui';
+import { Panel, Spinner, Button, PanelHeader, View, Root } from '@vkontakte/vkui';
 import {connect} from 'react-redux';
-import {push} from 'react-router-redux';
 import UserRequest from './UserRequest'
 import WorkerEpic from './workers/WorkerEpic'
 import DispetcherEpic from './dispetcher/DispetcherEpic'
