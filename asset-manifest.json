@@ -1,13 +1,13 @@
 {
-  "main.js": "/Muzeum/static/js/main.8bf49d0e.chunk.js",
-  "main.js.map": "/Muzeum/static/js/main.8bf49d0e.chunk.js.map",
+  "main.js": "/Muzeum/static/js/main.69c0d66a.chunk.js",
+  "main.js.map": "/Muzeum/static/js/main.69c0d66a.chunk.js.map",
   "static/css/1.37b78080.chunk.css": "/Muzeum/static/css/1.37b78080.chunk.css",
-  "static/js/1.9fee3af4.chunk.js": "/Muzeum/static/js/1.9fee3af4.chunk.js",
-  "static/js/1.9fee3af4.chunk.js.map": "/Muzeum/static/js/1.9fee3af4.chunk.js.map",
+  "static/js/1.d1269ab0.chunk.js": "/Muzeum/static/js/1.d1269ab0.chunk.js",
+  "static/js/1.d1269ab0.chunk.js.map": "/Muzeum/static/js/1.d1269ab0.chunk.js.map",
   "runtime~main.js": "/Muzeum/static/js/runtime~main.e6a34f2d.js",
   "runtime~main.js.map": "/Muzeum/static/js/runtime~main.e6a34f2d.js.map",
   "static/css/1.37b78080.chunk.css.map": "/Muzeum/static/css/1.37b78080.chunk.css.map",
   "index.html": "/Muzeum/index.html",
-  "precache-manifest.5dc33d8688d62380bab4fe677e9ee7fd.js": "/Muzeum/precache-manifest.5dc33d8688d62380bab4fe677e9ee7fd.js",
+  "precache-manifest.9e14fc747a422471856a1cebfeaee662.js": "/Muzeum/precache-manifest.9e14fc747a422471856a1cebfeaee662.js",
   "service-worker.js": "/Muzeum/service-worker.js"
 }
