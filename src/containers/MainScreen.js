@@ -42,15 +42,6 @@ class MainScreen extends Component {
         <View id="mainscreen" activePanel="mainscreen">
           <Panel id='mainscreen'>
             <PanelHeader ></PanelHeader>
-            {this.props.fetchedUser &&
-        		<Group title="User Data Fetched with VK Connect">
-        			<ListItem
-        				before={<Avatar src={this.props.fetchedUser.photo_200}/>}
-        				description={this.props.fetchedUser.city.title}
-        			>
-        				{`${this.props.fetchedUser.first_name} ${this.props.fetchedUser.last_name}`}
-        			</ListItem>
-        		</Group>}
             <Button size="xl" level="2" onClick={this.showRequest.bind(this)}>
               Посетитель
             </Button>
