@@ -5,6 +5,7 @@ import autoBind from 'react-autobind';
 import {push} from 'react-router-redux';
 import Icon24Back from '@vkontakte/icons/dist/24/back';
 import Icon24Search from '@vkontakte/icons/dist/24/search';
+import Icon24Plus from '@vkontakte/icons/dist/24/add';
 import _ from 'lodash';
 
 
@@ -58,7 +59,6 @@ class WorkersItem extends Component {
   }
 
   componentWillMount() {
-    this.props.dispatch(employeeActions.fetchPosts());
     this.props.dispatch(employeeActions.fetchTimeTables());
     this.props.dispatch(employeeActions.fetchWorkers());
     this.props.dispatch(employeeActions.fetchPosts());
@@ -83,14 +83,18 @@ class WorkersItem extends Component {
   getPostName(idPost) {
     console.log("ID");
     console.log(idPost);
-    var ind = _.findIndex(this.props.posts, { 'id': idPost });
-      console.log("ind");
-      console.log(ind);
-        console.log("ret");
-        if(ind>=0) {
-      console.log(this.props.posts[ind].post);
-      return this.props.posts[ind].post;
-    }
+
+    var posts = _.keyBy(this.props.posts, "id");
+
+    console.log("posts");
+    console.log(posts);
+
+    var post = posts[idPost];
+
+    console.log("post");
+    console.log(post);
+
+    return _.get(post, 'post', 'default');
   }
 
   render() {
@@ -100,12 +104,12 @@ class WorkersItem extends Component {
         <UI.View id="main" activePanel={this.state.activePanel}>
           <UI.Panel id='workers'>
             <UI.PanelHeader
-              left={<UI.HeaderButton onClick={() => this.setState({ activePanel: "addworker"})}>Добавить</UI.HeaderButton>}>
+              left={<UI.HeaderButton onClick={() => this.setState({ activePanel: "addworker"})}> Добавить <Icon24Plus/> </UI.HeaderButton>}>
               Сотрудники
             </UI.PanelHeader>
             <UI.Group>
               <UI.List>
-                {this.props.workers.map(employee => <div> <UI.Cell expandable description={ this.props.posts.post[2] } onClick={this.showEmployee.bind(this, employee)}> {employee.name} {employee.lastname} </UI.Cell> </div>)}
+                {this.props.workers.map(employee => <div> <UI.Cell expandable description={ _.get(_.keyBy(this.props.posts, "id")[employee.post] , 'post', 'Скрыто') } onClick={this.showEmployee.bind(this, employee)}> {employee.name} {employee.lastname} </UI.Cell> </div>)}
               </UI.List>
             </UI.Group>
           </UI.Panel>
