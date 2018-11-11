@@ -129,7 +129,7 @@ class WorkersItem extends Component {
             </UI.PanelHeader>
             <UI.Group>
               <UI.List>
-                {this.props.workers.map(employee => <div> <UI.Cell expandable description={ this.props.posts.post[2] } onClick={this.showEmployee.bind(this, employee)}> {employee.name} {employee.lastname} </UI.Cell> </div>)}
+                {this.props.workers.map(employee => <div> <UI.Cell expandable description={  _.get(_.keyBy(this.props.posts, "id")[employee.post] , 'post', 'Скрыто') } onClick={this.showEmployee.bind(this, employee)}> {employee.name} {employee.lastname} </UI.Cell> </div>)}
               </UI.List>
             </UI.Group>
           </UI.Panel>
